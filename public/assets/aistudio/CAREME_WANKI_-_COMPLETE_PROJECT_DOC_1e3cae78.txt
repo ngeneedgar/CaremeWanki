@@ -1,0 +1,430 @@
+CAREME WANKI - COMPLETE PROJECT DOCUMENTATION
+THE ONE STREET COMPANY / SAMSON PROPERTIES
+
+TABLE OF CONTENTS
+
+Design System and Brand Guidelines
+Website Content
+Technical Integrations
+=================================================
+PART 1: DESIGN SYSTEM
+BRAND POSITIONING
+Quiet-luxury real estate brand for the DMV. Confident, warm, precise - closer to a private advisory firm than a typical agent site.
+
+COLOR PALETTE
+
+Primary Accent - Butter Yellow - Hex F3DFA2
+Usage: Signature color, profile ring, dividers, hover states
+
+Secondary Accent - Deep Butter - Hex E4C878
+Usage: Buttons, active nav state
+
+Base Dark - Charcoal Gray - Hex 1C1C1E
+Usage: Primary background, nav, footer
+
+Base Light - Warm Off-White - Hex F7F5F0
+Usage: Alternating section backgrounds
+
+Text Primary - Soft White - Hex EDEDED
+Usage: Body copy on dark backgrounds
+
+Text Secondary - Stone Gray - Hex 8A8A8E
+Usage: Captions, metadata, license text
+
+Border/Divider - Hairline Gray - Hex 2E2E30
+Usage: 1px rules and dividers
+
+Signature color recommendation: Lock butter yellow in as Careme's signature across every platform - the website, email signature, link.me profile ring, business cards. Use it sparingly - profile photo ring, call-to-action buttons, numbered list markers, hover underlines. Charcoal carries the visual weight; butter yellow is the accent.
+
+TYPOGRAPHY
+
+Display and Headlines: Serif font - Fraunces or Canela. Sentence case, generous letter spacing, never all-caps for full headlines.
+
+Body Text: Inter or Sohne, light or regular weight.
+
+Navigation, Labels, Numbered Markers: Small caps or tabular numerals, Butter Yellow color, slightly increased letter spacing.
+
+LOGO LOCKUP
+Top line: THE ONE STREET COMPANY (wordmark, Butter Yellow or Soft White)
+Below it, smaller: SAMSON PROPERTIES (brokerage logo)
+
+Placement: header (small, top) and footer (larger, centered). Request official logo files in SVG or EPS format plus exact brand spacing rules from Samson Properties before build.
+
+IMAGERY STYLE
+Full-bleed cinematic property photography, no stock imagery. Portraits should use a charcoal backdrop with soft single-source light, optional butter-yellow rim light. One hero image per section, generous negative space.
+
+LAYOUT PRINCIPLES
+Max content width: 1200px
+Section vertical spacing: 120 to 160px on desktop
+12-column grid, 24px gutter
+Numbered-list service and highlight sections (01 through 04 style) used consistently across About, Services, and Resources sections
+Micro-interactions only: fade-up on scroll, underline draw on hover, counter animation on stats - nothing bouncy or playful
+
+BUTTONS
+Primary: Butter Yellow fill, Charcoal text, max 4px corner radius
+Secondary: Transparent background, 1px Butter Yellow border and text
+Hover state: invert fill and text colors, 200ms transition
+
+ICONOGRAPHY
+Line icons only, 1.5px stroke weight, Butter Yellow or Stone Gray color only - never filled or solid icons
+
+=================================================
+PART 2: WEBSITE CONTENT
+NAVIGATION MENU
+About - Services - Areas - Resources - Listings - Contact
+Button: Schedule a Consultation (butter yellow, links to Google Calendar)
+
+SECTION 1: HEADER AND HERO
+
+Branding: CW | Careme Wanki | Realtor
+Affiliation: The ONE Street Company - Samson Properties
+Service Areas: Washington D.C. - Maryland - Northern Virginia
+
+Headline:
+Real estate, guided by strategy and care.
+
+Hero Copy:
+I'm Careme Wanki, a real estate professional serving Washington D.C., Maryland, and Northern Virginia. I bring a master's degree and a background in project management to every transaction, paired with a genuine passion for understanding what my clients are truly working toward. Fluent in English and French, I work with a diverse range of clients to deliver a seamless, personalized experience from first conversation to closing day.
+
+Call to Action Buttons:
+Schedule a Consultation (links to Google Calendar)
+Search Homes on Zillow
+
+Quick Highlights Stats Bar:
+Master's Degree
+Project Management Background
+Fluent in English and French
+Licensed in DC and MD, Virginia Pending
+
+SECTION 2: ABOUT
+
+Headline: A background built for people-first real estate.
+
+Main Bio:
+Careme Wanki is a real estate professional serving Washington D.C., Maryland, and Northern Virginia, affiliated with The ONE Street Company and Samson Properties. Careme's path into real estate was shaped by a genuine love of connecting with people, understanding their goals, and helping them make confident, informed decisions at every stage of a transaction.
+
+Holding a master's degree and bringing a background in project management, she approaches every client relationship with strategic thinking, close attention to detail, and clear, consistent communication. Fluent in both English and French, she works comfortably with clients from a wide range of backgrounds, whether they're buying their first home, selling a long-held property, building an investment portfolio, or relocating to the DMV.
+
+Key Highlights List:
+01 - Master's Degree
+02 - Background in Project Management
+03 - Licensed in DC and Maryland, Virginia Pending
+04 - Fluent in English and French
+
+SECTION 3: SERVICES
+
+Headline: How I Can Help
+Sub-headline: Every client's journey is different. Here are the most common ways we work together.
+
+01 - Buyers
+From your first search to final walkthrough, I guide you through financing conversations, neighborhood selection, and negotiation, with the structure and attention to detail of a project manager behind every step.
+
+02 - Sellers
+Selling a home takes both strategy and care. I handle pricing, marketing, and negotiation with precision, so your property is positioned to perform in today's market.
+
+03 - Investors
+Whether you're purchasing your first rental property or expanding a portfolio across D.C., Maryland, and Virginia, I help you evaluate opportunities clearly and move with confidence.
+
+04 - Relocation
+Moving to the DMV, from across the country or internationally? I provide local market insight, trusted connections, and support in English or French, making your transition as smooth as possible.
+
+SECTION 4: SERVICE AREAS
+
+Headline: Across the DMV.
+Sub-headline: Licensed and active across three jurisdictions - wherever your move takes you, I'm with you every step.
+
+DC (Washington D.C.): From historic neighborhoods to emerging pockets of the District.
+MD (Maryland): Montgomery County, Prince George's County, and surrounding communities.
+VA (Northern Virginia): Arlington, Alexandria, Fairfax, and beyond. License Pending.
+
+SECTION 5: RESOURCES AND NETWORK
+
+Headline: Beyond the Realtor.
+Sub-headline: A trusted network of specialists I personally rely on to take care of my clients at every stage of the process.
+
+01 - Lender: A trusted mortgage advisor to guide financing.
+02 - Title and Escrow: A settlement team that closes cleanly.
+03 - Home Inspection: Thorough, clear-eyed inspectors.
+04 - Insurance: Reliable homeowner and condo coverage partners.
+05 - Renovation and Repair: Vetted contractors for any scope.
+06 - Cleaning and Staging: Make-ready crews and stagers.
+
+Note: Client to provide actual partner names and logos to populate this grid. Grayscale logos that colorize on hover.
+
+SECTION 6: FEATURED LISTINGS
+
+Headline: Explore Current Listings
+Sub-headline: Browse active listings across D.C., Maryland, and Northern Virginia, updated in real time via Zillow.
+
+Button: Search Homes on Zillow
+
+Note: See Technical Integrations section for implementation details. Once Careme has closed transactions, a Recently Sold grid can be added with real data only - no placeholder figures should ever be published.
+
+SECTION 7: TESTIMONIALS
+
+Headline: Client Experiences
+
+Note: Structure ready, content pending - no testimonials provided yet. Recommend collecting 3 to 5 short client quotes, formatted like:
+
+"Quote text here"
+
+Client Name, Buyer/Seller/Renter, Neighborhood
+Button (once available): Read all reviews on Zillow
+
+SECTION 8: CONTACT AND FOOTER
+
+Headline: Let's start the conversation.
+Sub-headline: Whether you're ready to buy, sell, invest, or just exploring your options, I'd love to hear from you.
+
+Contact Info:
+Phone: 571.536.7054
+Email: Careme@onestreet.one
+Office: 5021 Wilson Ln, Bethesda, MD 20814
+
+Contact Form Fields:
+Full Name
+Email
+Phone
+I'm interested in: (Buying / Selling / Investing / Relocation)
+Message
+Button: Send Message
+
+Booking Call to Action:
+Schedule a Consultation (links to embedded Google Calendar Appointment Scheduler)
+
+License Numbers:
+Washington D.C.: SP40004843
+Maryland: 5024731
+Virginia: Pending
+
+Memberships and Compliance:
+NAR, GCAAR, Bright MLS, Equal Housing Opportunity
+
+Logo Lockup:
+THE ONE STREET COMPANY
+SAMSON PROPERTIES
+
+Copyright:
+2025 Careme Wanki. All rights reserved.
+
+SECTION 9: LINK.ME PAGE
+
+Profile: Photo with butter-yellow ring - Careme Wanki
+Subtitle: The ONE Street Company - Samson Properties
+
+Buttons:
+Search Homes on Zillow
+Schedule a Consultation (Google Calendar)
+Contact Me
+Instagram
+LinkedIn
+Main Website
+
+=================================================
+PART 3: TECHNICAL INTEGRATIONS
+SECTION 1: GOOGLE CALENDAR APPOINTMENT SCHEDULER
+
+Overview:
+Replaces Calendly or any third-party booking tool. Native to Careme's Google account (Gmail or Google Workspace), free, fully under her control.
+
+Setup Steps:
+
+Go to calendar.google.com
+Left sidebar, click Create, then Appointment Schedule (requires Gmail or Google Workspace account, free on all tiers)
+Configure settings:
+Title: Consultation with Careme Wanki
+Duration: 30 minutes
+Availability: Monday through Friday, 9am to 6pm Eastern Time
+Buffer time: 15 minutes between bookings
+Booking window: Maximum 60 days in advance
+Location: Phone, Google Meet, or In-person (Careme to choose)
+Under Booking Form, enable these fields: Name, Email, Phone, Notes
+Click Save, then Share, then copy the booking page link
+Embed Code Option A - Full iFrame for Contact Page:
+
+<div class="calendar-embed-wrapper"> <iframe src="[BOOKING_PAGE_LINK]" style="border: 0; width: 100%; height: 700px;" frameborder="0" ></iframe> </div>
+CSS styling:
+.calendar-embed-wrapper {
+max-width: 900px;
+margin: 0 auto;
+border: 1px solid #2E2E30;
+border-radius: 8px;
+overflow: hidden;
+background: #F7F5F0;
+}
+
+Embed Code Option B - Button Link-Out for Header and Link.me page:
+
+<a href="[BOOKING_PAGE_LINK]" target="_blank" class="btn-primary"> Schedule a Consultation </a>
+Placement Map:
+Contact Page: Use Option A (full iFrame)
+Header/Nav CTA: Use Option B (button)
+Link.me Page: Use Option B (button)
+
+Developer Notes:
+No API key or OAuth required, this is a public shareable link. Future CRM sync would require Google Calendar API with OAuth2 setup - this is a Phase 2 item, not needed for launch.
+
+SECTION 2: ZILLOW LISTINGS INTEGRATION
+
+Critical Constraint:
+Zillow discontinued its public listings API in 2021. There is no official API to pull live MLS listings from Zillow into a third-party site. Scraping Zillow violates their Terms of Service and is not viable for a licensed agent's professional website.
+
+OPTION A (Recommended Long-Term): IDX Feed via Bright MLS
+Careme's MLS is Bright MLS, covering the DC/MD/VA region. IDX providers pull real-time listing data directly from Bright MLS, not Zillow - fully compliant and auto-updating.
+
+Recommended IDX Providers:
+iHomefinder - easiest integration for WordPress or custom sites
+Showcase IDX - strong design customization
+Realtyna / WPL - flexible, developer-friendly
+Real Geeks - includes CRM plus lead capture bundled
+
+Implementation Flow:
+
+Careme, via her broker Samson Properties, requests Bright MLS IDX credentials.
+Sign up with chosen IDX provider, connect Bright MLS credentials.
+Provider issues an embed script or plugin.
+Style the output using the provider's CSS override options to match the brand (Butter Yellow and Charcoal theme).
+Example embed code (exact snippet provided by IDX vendor):
+
+<div id="idx-listings-widget" data-mlsid="BRIGHT_MLS_ID"></div> <script src="https://[idx-provider].com/widgets/listings.js" async></script>
+Estimated Cost: $40 to $150 per month depending on provider and features.
+
+OPTION B (Launch-Ready, Zero Cost): Zillow Profile Link-Out
+Simple branded button linking to Careme's official Zillow agent profile and search page.
+
+Example code:
+<a href="https://www.zillow.com/profile/[careme-profile-slug]" target="_blank" class="btn-secondary">
+Search Homes on Zillow
+</a>
+
+This fully satisfies the original request with zero technical risk or ongoing cost.
+
+OPTION C (Launch-Ready): Manually Curated Featured Listings
+Recreates the "pop-up beautiful house cards" visual effect using Careme's own listing photos and data - fully owned content, no scraping involved.
+
+Example data structure (JSON format for developer):
+{
+"listings": [
+{
+"address": "123 Main St, Bethesda, MD",
+"price": "$950,000",
+"beds": 4,
+"baths": 3,
+"sqft": 2400,
+"image": "/images/listings/123-main-st.jpg",
+"status": "Active",
+"zillowLink": "https://www.zillow.com/homedetails/..."
+}
+]
+}
+
+UI Behavior: Fade-up animation on scroll, hover lift plus shadow effect, fully brand-styled cards.
+
+Recommendation: Launch with Option B plus Option C. Upgrade to Option A (full IDX/Bright MLS feed) once budget allows.
+
+SECTION 3: MORTGAGE AND PROPERTY CALCULATOR
+
+Overview:
+A client-side calculator requiring no backend. Standard trust-building tool on premium real estate websites.
+
+Placement:
+Standalone "Estimate Your Payment" module on the Listings page, directly below Featured Listings. Styled as a Charcoal card with Butter Yellow accent on output numbers.
+
+Input Fields:
+Home Price - Number field, dollar amount - Default $600,000
+Down Payment - Number or percentage toggle - Default 20%
+Loan Term - Dropdown - Options: 15, 20, or 30 years
+Interest Rate - Number field, percentage - Auto-suggested current average, editable
+Property Tax (annual) - Number field - Optional, estimated at 1.1% of home price
+Home Insurance (annual) - Number field - Optional, estimated at $1,200
+HOA (monthly) - Number field - Optional
+
+Output Display:
+Estimated Monthly Payment - large, Butter Yellow colored number
+Breakdown showing: Principal and Interest / Taxes / Insurance / HOA
+Optional: donut chart visualizing the payment breakdown
+
+Calculation Logic (JavaScript function):
+
+function calculateMortgage({
+homePrice,
+downPaymentPercent,
+loanTermYears,
+annualInterestRate,
+annualPropertyTax = 0,
+annualInsurance = 0,
+monthlyHOA = 0
+}) {
+const downPayment = homePrice * (downPaymentPercent / 100);
+const loanAmount = homePrice - downPayment;
+const monthlyRate = (annualInterestRate / 100) / 12;
+const numPayments = loanTermYears * 12;
+
+const monthlyPI =
+monthlyRate === 0
+? loanAmount / numPayments
+: (loanAmount * monthlyRate * Math.pow(1 + monthlyRate, numPayments)) /
+(Math.pow(1 + monthlyRate, numPayments) - 1);
+
+const monthlyTax = annualPropertyTax / 12;
+const monthlyInsurance = annualInsurance / 12;
+
+const totalMonthly = monthlyPI + monthlyTax + monthlyInsurance + monthlyHOA;
+
+return {
+loanAmount: loanAmount.toFixed(2),
+monthlyPI: monthlyPI.toFixed(2),
+monthlyTax: monthlyTax.toFixed(2),
+monthlyInsurance: monthlyInsurance.toFixed(2),
+monthlyHOA: monthlyHOA.toFixed(2),
+totalMonthly: totalMonthly.toFixed(2)
+};
+}
+
+UI Behavior:
+Live-updates output on every input change, no submit button needed. Sliders preferred over raw number fields for Down Payment percentage and Interest Rate - feels more premium and interactive. On mobile, stack inputs vertically and keep the output number sticky/visible while scrolling.
+
+Build Options:
+Custom-built (React/Vue component) - Recommended. Fully brand-matched, no third-party branding, no monthly cost, but requires developer time.
+Third-party widget (Bankrate, MortgageCalculator.org) - Faster to implement but carries external branding, harder to match the Butter Yellow/Charcoal theme. Not recommended for a premium-positioned site.
+
+Lead-Capture Tie-In (Phase 2, optional):
+Add an optional field at the bottom of the calculator results: "Want a personalized pre-approval estimate? Schedule a Consultation" - links directly to the Google Calendar booking flow. Turns a passive tool into a lead-generation touchpoint.
+
+SECTION 4: BUILD PRIORITY SUMMARY
+
+Google Calendar embed - Priority: High/Launch - Cost: Free - Complexity: Low
+Zillow link-out button - Priority: High/Launch - Cost: Free - Complexity: Very Low
+Manual featured listings cards - Priority: High/Launch - Cost: Free - Complexity: Low
+Mortgage calculator (custom-built) - Priority: Medium/Launch - Cost: Free - Complexity: Medium
+Full IDX/Bright MLS feed - Priority: Low/Phase 2 - Cost: $40-150/month - Complexity: Medium-High
+CRM sync via Google Calendar API - Priority: Low/Phase 2 - Cost: Free (dev time) - Complexity: Medium
+
+SECTION 5: PHASE 2 ROADMAP (Not Required for Launch)
+
+Full IDX/Bright MLS integration: Live, auto-updating listings feed replacing manual cards.
+Google Calendar API plus CRM sync: Auto-log bookings into a CRM system such as Follow Up Boss or HubSpot.
+Home Value Estimator tool: Lead-generation form estimating home value from address plus basic inputs, reviewed personally by Careme.
+Live chat/virtual assistant: Quick-reply chatbot for lead qualification.
+Testimonials via Zillow reviews: Once Careme has an active, reviewed Zillow profile.
+
+
+LINKS
+
+Onestreet White logo
+https://i.postimg.cc/pXC77JxQ/onestreet-Logo-White.png
+
+Onestreet Black logo
+https://i.postimg.cc/7Y9ccnDn/onestreet-Logo-Black.png
+
+Professional Headshot
+https://i.postimg.cc/J0PqTKJN/Profile-picture.jpg
+
+Samson's Company Logo
+https://i.postimg.cc/fTR53nn5/samson-logo.png
+
+
+MEMBER-GCAAR, Bright MLs
+
+https://www.instagram.com/careme_sells_realestate?psln=YXRzZGd4N3B2dTE2&utm_source=qr
+www.tiktok.com/@careme_sells_realestate
