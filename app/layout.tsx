@@ -4,6 +4,7 @@ import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import MouseAnchor from '@/components/ui/MouseAnchor';
+import AutoContactPopup from '@/components/AutoContactPopup';
 
 const fraunces = Fraunces({
   subsets: ['latin'],
@@ -88,6 +89,7 @@ export default function RootLayout({
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <AutoContactPopup />
       </body>
     </html>
   );

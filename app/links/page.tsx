@@ -1,15 +1,39 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Home, CalendarCheck, Mail, Instagram, Linkedin, Globe, Music2 } from "lucide-react";
+import { CalendarCheck, Instagram, Globe, Music2, MessageSquare } from "lucide-react";
 
 const links = [
-  { label: "Search Homes on Zillow", href: "https://www.zillow.com", icon: Home, external: true },
-  { label: "Schedule a Consultation", href: "/contact", icon: CalendarCheck, external: false },
-  { label: "Contact Me Directly", href: "mailto:Careme@onestreet.one", icon: Mail, external: true },
-  { label: "Instagram (@careme_sells_realestate)", href: "https://www.instagram.com/careme_sells_realestate", icon: Instagram, external: true },
-  { label: "TikTok (@careme_sells_realestate)", href: "https://www.tiktok.com/@careme_sells_realestate", icon: Music2, external: true },
-  { label: "LinkedIn", href: "https://www.linkedin.com", icon: Linkedin, external: true },
-  { label: "Main Website", href: "/", icon: Globe, external: false },
+  {
+    label: "Text Me Directly (571.536.7054)",
+    href: "sms:+15715367054",
+    icon: MessageSquare,
+    external: true,
+    highlight: true,
+  },
+  {
+    label: "Schedule a Consultation",
+    href: "/contact",
+    icon: CalendarCheck,
+    external: false,
+  },
+  {
+    label: "Instagram (@careme_sells_realestate)",
+    href: "https://www.instagram.com/careme_sells_realestate",
+    icon: Instagram,
+    external: true,
+  },
+  {
+    label: "TikTok (@careme_sells_realestate)",
+    href: "https://www.tiktok.com/@careme_sells_realestate",
+    icon: Music2,
+    external: true,
+  },
+  {
+    label: "Main Website",
+    href: "/",
+    icon: Globe,
+    external: false,
+  },
 ];
 
 export const metadata = {
@@ -21,7 +45,7 @@ export default function LinksPage() {
   return (
     <main className="min-h-screen bg-charcoal flex flex-col items-center px-6 py-16">
       <div className="w-full max-w-sm mx-auto flex flex-col items-center">
-        {/* Profile photo with butter-yellow ring */}
+        {/* Profile photo with gold ring */}
         <div className="relative w-24 h-24 rounded-full p-[3px] bg-gradient-to-br from-[#F3DFA2] to-[#E4C878] mb-5">
           <div className="w-full h-full rounded-full overflow-hidden ring-4 ring-charcoal">
             <Image
@@ -47,7 +71,13 @@ export default function LinksPage() {
           {links.map((link) => {
             const Icon = link.icon;
             const content = (
-              <div className="flex items-center justify-center gap-3 w-full px-6 py-4 border border-[#F3DFA2]/30 text-soft-white text-sm tracking-wide transition-all duration-200 active:scale-[0.98] hover:border-[#F3DFA2] hover:bg-[#F3DFA2]/5 rounded-[2px]">
+              <div
+                className={`flex items-center justify-center gap-3 w-full px-6 py-4 border text-sm tracking-wide transition-all duration-200 active:scale-[0.98] rounded-[2px] ${
+                  link.highlight
+                    ? "border-[#F3DFA2] bg-[#F3DFA2]/15 text-[#F3DFA2] font-medium shadow-[0_2px_12px_rgba(243,223,162,0.15)] hover:bg-[#F3DFA2]/25"
+                    : "border-[#F3DFA2]/30 text-soft-white hover:border-[#F3DFA2] hover:bg-[#F3DFA2]/5"
+                }`}
+              >
                 <Icon size={16} className="text-[#F3DFA2]" strokeWidth={1.5} />
                 <span>{link.label}</span>
               </div>
@@ -57,8 +87,8 @@ export default function LinksPage() {
               <a
                 key={link.label}
                 href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                target={link.href.startsWith("sms:") ? undefined : "_blank"}
+                rel={link.href.startsWith("sms:") ? undefined : "noopener noreferrer"}
                 className="w-full block"
               >
                 {content}
@@ -71,21 +101,24 @@ export default function LinksPage() {
           })}
         </div>
 
-        {/* Bottom footer for links: licenses + small Samson Properties logo */}
+        {/* Bottom footer for links: licenses + sharp Samson Properties logo */}
         <div className="mt-12 flex flex-col items-center gap-3 text-center">
           <p className="text-[11px] text-stone-gray/70">
             Licensed in Maryland, Washington D.C., and Virginia
           </p>
 
-          <div className="flex items-center gap-2 opacity-75">
+          <div className="flex items-center gap-2 pt-1">
             <Image
-              src="/images/samson-logo.png"
+              src="https://i.postimg.cc/MKS1DgPL/samson-logo.png"
               alt="Samson Properties"
-              width={16}
-              height={16}
-              className="h-4 w-auto object-contain brightness-90"
+              width={140}
+              height={36}
+              className="h-6 w-auto object-contain brightness-105 contrast-105"
+              style={{
+                imageRendering: "-webkit-optimize-contrast",
+              }}
+              referrerPolicy="no-referrer"
             />
-            <span className="text-[11px] text-stone-gray font-medium">Samson Properties</span>
           </div>
         </div>
       </div>

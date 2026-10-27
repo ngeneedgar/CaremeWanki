@@ -1,13 +1,6 @@
 'use client';
 
-import Image from 'next/image';
-import Link from 'next/link';
-import {
-  ArrowRight,
-  ExternalLink,
-  MapPin,
-} from 'lucide-react';
-import { useState } from 'react';
+import { ArrowRight } from 'lucide-react';
 import HeroSection from '@/components/sections/HeroSection';
 import RegionalTrackRecord from '@/components/sections/RegionalTrackRecord';
 import ServicesGrid from '@/components/sections/ServicesGrid';
@@ -17,14 +10,17 @@ import FeaturedListings from '@/components/sections/FeaturedListings';
 import InstagramVideoGrid from '@/components/sections/InstagramVideoGrid';
 import TestimonialsCarousel from '@/components/sections/TestimonialsCarousel';
 import HomeContactSection from '@/components/sections/HomeContactSection';
-import ConnectModal from '@/components/ConnectModal';
 import Ornament from '@/components/ui/Ornament';
 import FadeUp from '@/components/motion/FadeUp';
 import StaggerContainer from '@/components/motion/StaggerContainer';
 import StaggerItem from '@/components/motion/StaggerItem';
 
 export default function HomePage() {
-  const [isConnectOpen, setIsConnectOpen] = useState(false);
+  const openConnect = () => {
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('open-connect-modal'));
+    }
+  };
 
   return (
     <div className="bg-charcoal text-soft-white overflow-hidden">
@@ -36,7 +32,7 @@ export default function HomePage() {
       {/* ========================================================
           SECTION 2: REGIONAL TRACK RECORD (PROVEN LEADERSHIP & STATS)
       ======================================================== */}
-      <RegionalTrackRecord onOpenConnect={() => setIsConnectOpen(true)} />
+      <RegionalTrackRecord onOpenConnect={openConnect} />
 
       {/* ========================================================
           SECTION 3: ABOUT (FIRST PERSON VOICE)
@@ -77,7 +73,7 @@ export default function HomePage() {
               <div className="pt-2">
                 <button
                   type="button"
-                  onClick={() => setIsConnectOpen(true)}
+                  onClick={openConnect}
                   className="inline-flex items-center gap-2 text-xs uppercase tracking-wider text-[#F3DFA2] hover:text-[#E4C878] transition-colors cursor-pointer"
                 >
                   <span>Connect With Me</span>
@@ -218,7 +214,7 @@ export default function HomePage() {
             </p>
             <button
               type="button"
-              onClick={() => setIsConnectOpen(true)}
+              onClick={openConnect}
               className="text-xs uppercase tracking-wider text-[#F3DFA2] hover:text-[#E4C878] transition-colors whitespace-nowrap cursor-pointer"
             >
               Request Partner Introductions →
@@ -246,14 +242,6 @@ export default function HomePage() {
           SECTION 11: HOMEPAGE CONTACT & MESSAGE SECTION
       ======================================================== */}
       <HomeContactSection />
-
-      {/* ========================================================
-          MODAL: LET'S CONNECT MODAL (TRIGGERED SITE-WIDE)
-      ======================================================== */}
-      <ConnectModal
-        isOpen={isConnectOpen}
-        onClose={() => setIsConnectOpen(false)}
-      />
     </div>
   );
 }
