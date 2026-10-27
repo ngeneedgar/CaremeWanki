@@ -67,10 +67,10 @@ export default function Navbar() {
         {/* Zone 3: Primary Action & Mobile Toggle */}
         <div className="flex items-center gap-4 shrink-0">
           <Link
-            href="/contact#schedule"
+            href="/contact"
             className="hidden sm:inline-flex items-center justify-center px-4 py-2 text-xs font-semibold tracking-wider uppercase text-[#1C1C1E] bg-[#F3DFA2] hover:bg-[#E4C878] rounded-[4px] transition-colors duration-200 whitespace-nowrap"
           >
-            Schedule a Consultation
+            Get in Touch
           </Link>
 
           {/* Mobile Menu Button */}
@@ -107,18 +107,18 @@ export default function Navbar() {
             ))}
             <div className="pt-4 flex flex-col gap-3">
               <Link
-                href="/contact#schedule"
+                href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full text-center py-3 text-xs font-semibold tracking-wider uppercase text-[#1C1C1E] bg-[#F3DFA2] hover:bg-[#E4C878] rounded-[4px] transition-colors"
               >
-                Schedule a Consultation
+                Get in Touch
               </Link>
               <Link
                 href="/links"
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full text-center py-2.5 text-xs font-medium tracking-wide text-[#8A8A8E] hover:text-[#EDEDED] transition-colors border border-[#2E2E30] rounded-[4px]"
               >
-                Link.me Bio Hub
+                Quick Links (/links)
               </Link>
             </div>
           </nav>

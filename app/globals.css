@@ -76,3 +76,12 @@ body {
 input[type="range"] {
   accent-color: #F3DFA2;
 }
+
+/* Hide scrollbar utility for clean horizontal scroll-snap */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

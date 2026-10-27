@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { Phone, Mail, MapPin, Instagram, ExternalLink } from 'lucide-react';
 import Logo from '@/components/Logo';
 import Ornament from '@/components/ui/Ornament';
+import SamsonLogo from '@/components/ui/SamsonLogo';
 
 export default function Footer() {
   const pathname = usePathname();
@@ -19,7 +20,7 @@ export default function Footer() {
       <div className="max-w-[1200px] mx-auto px-6">
         {/* Main Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 pb-16 border-b border-[#2E2E30]">
-          {/* Col 1: Brand & Brokerage Lockup (4 cols) */}
+          {/* Col 1: Brand & Monogram (5 cols) */}
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
               <div className="mb-6">
@@ -27,11 +28,11 @@ export default function Footer() {
               </div>
 
               <h2 className="font-display text-2xl text-[#EDEDED] font-normal tracking-tight mb-3">
-                Careme Wanki
+                Careme Nchang Wanki
               </h2>
               <p className="text-sm text-[#8A8A8E] leading-relaxed max-w-sm mb-6">
-                I&apos;m a real estate professional serving Washington D.C., Maryland, and Northern Virginia.
-                Strategic advisory, project management discipline, and people-first service.
+                Real estate advisory serving Washington D.C., Maryland, and Virginia. Strategic
+                counsel, project management discipline, and people-first service.
               </p>
             </div>
 
@@ -59,7 +60,7 @@ export default function Footer() {
                 href="/links"
                 className="text-xs tracking-wider uppercase px-3 py-2 border border-[#2E2E30] rounded-[4px] hover:text-[#F3DFA2] hover:border-[#F3DFA2] transition-colors"
               >
-                Link.me Hub
+                Quick Links (/links)
               </Link>
             </div>
           </div>
@@ -97,7 +98,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/contact" className="hover:text-[#EDEDED] transition-colors">
-                  Contact & Scheduling
+                  Contact Careme
                 </Link>
               </li>
             </ul>
@@ -132,10 +133,10 @@ export default function Footer() {
             {/* Quick Action */}
             <div className="mt-6 pt-5 border-t border-[#2E2E30]/60">
               <Link
-                href="/contact#schedule"
+                href="/contact"
                 className="inline-flex items-center gap-2 text-xs uppercase tracking-wider text-[#F3DFA2] hover:text-[#E4C878] transition-colors"
               >
-                <span>Request a Consultation</span>
+                <span>Send an Inquiry</span>
                 <ExternalLink className="w-3.5 h-3.5" strokeWidth={1.5} />
               </Link>
             </div>
@@ -145,49 +146,51 @@ export default function Footer() {
         {/* Legal, Licensure & Compliance Block */}
         <div className="pt-8 text-xs leading-relaxed space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-4">
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[#8A8A8E]">
+            {/* License numbers ONCE */}
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[#8A8A8E]">
               <span>
-                <strong className="text-[#EDEDED] font-medium">Washington D.C. License:</strong>{' '}
-                <span className="tabular-nums">SP40004843</span>
+                <strong className="text-[#EDEDED] font-medium">Licensed in DC:</strong>{' '}
+                <span className="tabular-nums font-mono">SP40004843</span>
               </span>
               <span className="text-[#2E2E30]">·</span>
               <span>
-                <strong className="text-[#EDEDED] font-medium">Maryland License:</strong>{' '}
-                <span className="tabular-nums">5024731</span>
+                <strong className="text-[#EDEDED] font-medium">MD:</strong>{' '}
+                <span className="tabular-nums font-mono">5024731</span>
               </span>
               <span className="text-[#2E2E30]">·</span>
               <span>
-                <strong className="text-[#EDEDED] font-medium">Virginia License:</strong> Pending
+                <strong className="text-[#EDEDED] font-medium">Virginia</strong>
               </span>
             </div>
 
+            {/* Badges: GCAAR & Bright MLS */}
             <div className="flex items-center gap-3 text-[11px] tracking-wider uppercase text-[#8A8A8E]">
-              <span>NAR</span>
-              <span>·</span>
               <span>GCAAR</span>
               <span>·</span>
               <span>Bright MLS</span>
-              <span>·</span>
-              <span>Equal Housing Opportunity</span>
             </div>
           </div>
 
           <p className="text-[11px] text-[#8A8A8E]/80">
-            Careme Wanki is affiliated with The ONE Street Company and Samson Properties. All
-            information provided is deemed reliable but is not guaranteed accurate and should be
+            All information provided is deemed reliable but is not guaranteed accurate and should be
             independently verified. Properties are subject to prior sale, change, or withdrawal.
             Neither listing broker(s) nor Samson Properties shall be responsible for any
             typographical errors, misinformation, or misprints and shall be held totally harmless.
-            Equal Housing Opportunity.
           </p>
 
-          <div className="py-6 flex justify-center">
+          <div className="py-4 flex justify-center">
             <Ornament color="#F3DFA2" />
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-2 border-t border-[#2E2E30]/40 pt-4 text-[11px]">
-            <p>© {new Date().getFullYear()} Careme Wanki. All rights reserved.</p>
-            <p className="text-[#8A8A8E]">The ONE Street Company · Samson Properties</p>
+          {/* Bottom Bar: Samson Properties logo on the LEFT side, sharp vector SVG, copyright on the right */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-[#2E2E30]/40 pt-6 text-[11px]">
+            {/* Samson Properties on the LEFT */}
+            <div className="flex items-center">
+              <SamsonLogo className="h-6 w-auto" />
+            </div>
+
+            {/* Copyright on the RIGHT */}
+            <p className="text-[#8A8A8E]">© {new Date().getFullYear()} Careme Nchang Wanki. All rights reserved.</p>
           </div>
         </div>
       </div>

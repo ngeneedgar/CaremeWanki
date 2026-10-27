@@ -41,9 +41,9 @@ export default function HeroSection() {
 
             <motion.h1
               variants={item}
-              className="font-serif text-[clamp(3rem,7vw,5.5rem)] leading-[0.95] text-soft-white tracking-tight mb-6"
+              className="font-serif text-[clamp(2.75rem,6.5vw,5rem)] leading-[0.98] text-soft-white tracking-tight mb-6"
             >
-              Careme
+              Careme Nchang
               <br />
               Wanki
             </motion.h1>
@@ -52,7 +52,7 @@ export default function HeroSection() {
               variants={item}
               className="text-soft-white/70 text-base md:text-lg leading-relaxed max-w-md mb-10"
             >
-              Specializing in buyers, sellers, investors, and relocation across Washington D.C., Maryland, and Northern Virginia — bilingual, strategic, and detail-driven.
+              Specializing in buyers, sellers, investors, and relocation across Washington D.C., Maryland, and Virginia — bilingual, strategic, and detail-driven.
             </motion.p>
 
             <motion.div variants={item} className="flex flex-col sm:flex-row gap-4 mb-8">
@@ -60,13 +60,13 @@ export default function HeroSection() {
                 href="/contact"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#F3DFA2] text-charcoal font-medium text-sm tracking-wide rounded-[2px] transition-transform duration-200 hover:scale-[1.02]"
               >
-                Schedule a Consultation →
+                Get in Touch →
               </Link>
               <Link
                 href="/listings"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-[#F3DFA2]/40 text-[#F3DFA2] font-medium text-sm tracking-wide rounded-[2px] transition-all duration-200 hover:border-[#F3DFA2] hover:bg-[#F3DFA2]/5"
               >
-                Search Homes
+                Explore Showcase
               </Link>
             </motion.div>
 
@@ -75,7 +75,7 @@ export default function HeroSection() {
               className="flex items-center gap-2 text-stone-gray text-xs tracking-wide uppercase"
             >
               <ShieldCheck size={14} className="text-[#F3DFA2]" strokeWidth={1.5} />
-              Licensed in DC & Maryland · Virginia Pending
+              Licensed in Maryland, Washington D.C., and Virginia
             </motion.div>
           </motion.div>
 
@@ -89,7 +89,7 @@ export default function HeroSection() {
             <div className="relative w-full aspect-[4/5] overflow-hidden rounded-[2px] bg-[#242426] border border-hairline">
               <Image
                 src="/images/careme-portrait.jpg"
-                alt="Careme Wanki — Realtor serving the DMV"
+                alt="Careme Nchang Wanki — Real Estate Advisor serving the DMV"
                 fill
                 priority
                 className="object-cover"

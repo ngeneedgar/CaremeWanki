@@ -1,30 +1,24 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
+import { Loader2, CheckCircle2, AlertCircle, Send } from "lucide-react";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
 export interface ContactFormData {
   name: string;
   email: string;
-  phone: string;
-  location: string;
-  interest: string;
-  timeline: string;
   budget: string;
+  phone: string;
   message: string;
 }
 
 const initialState: ContactFormData = {
   name: "",
   email: "",
-  phone: "",
-  location: "Washington D.C.",
-  interest: "Buying",
-  timeline: "1-3 months",
   budget: "$500k - $1M",
+  phone: "",
   message: "",
 };
 
@@ -40,11 +34,11 @@ export default function ContactForm({ compact = false }: { compact?: boolean }) 
   };
 
   const validate = (): string | null => {
-    if (!formData.name.trim()) return "Please enter your name.";
+    if (!formData.name.trim()) return "Please enter your full name.";
     if (!formData.email.trim() || !/^\S+@\S+\.\S+$/.test(formData.email)) {
       return "Please enter a valid email address.";
     }
-    if (!formData.message.trim()) return "Please enter a message.";
+    if (!formData.message.trim()) return "Please tell me about your real estate goals.";
     return null;
   };
 
@@ -82,14 +76,15 @@ export default function ContactForm({ compact = false }: { compact?: boolean }) 
   if (status === "success") {
     return (
       <motion.div
-        initial={{ opacity: 0, y: 10 }}
+        initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        className="flex flex-col items-center justify-center text-center py-14 px-6 border border-hairline bg-[#242426] rounded-[2px]"
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        className="flex flex-col items-center justify-center text-center py-14 px-6 border border-[#2E2E30] bg-[#242426] rounded-[2px]"
       >
-        <CheckCircle2 className="text-[#F3DFA2] mb-4" size={36} strokeWidth={1.5} />
-        <h3 className="font-serif text-2xl text-soft-white mb-2">Message sent.</h3>
+        <CheckCircle2 className="text-[#F3DFA2] mb-4" size={40} strokeWidth={1.5} />
+        <h3 className="font-serif text-2xl text-soft-white mb-2">Message Received</h3>
         <p className="text-stone-gray text-sm max-w-sm leading-relaxed">
-          Thank you for reaching out — I&apos;ll personally review your inquiry and respond within 24 hours.
+          Thank you for reaching out — I&apos;ll personally review your real estate goals and respond within 24 hours.
         </p>
         <button
           onClick={() => setStatus("idle")}
@@ -102,49 +97,87 @@ export default function ContactForm({ compact = false }: { compact?: boolean }) 
   }
 
   return (
-    <form
+    <motion.form
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       onSubmit={handleSubmit}
-      className={`space-y-4 bg-[#242426] border border-hairline ${
+      className={`space-y-4 bg-[#242426] border border-[#2E2E30] ${
         compact ? "p-6" : "p-6 sm:p-8"
-      } rounded-[2px]`}
+      } rounded-[2px] transition-colors hover:border-[#F3DFA2]/30`}
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {/* Full Name */}
+        {/* 1. Full name */}
         <div>
-          <label htmlFor="form-name" className="block text-[11px] uppercase tracking-wider text-[#8A8A8E] mb-1.5 font-medium">
+          <label
+            htmlFor="form-name"
+            className="block text-[11px] uppercase tracking-wider text-[#8A8A8E] mb-1.5 font-medium"
+          >
             Full Name <span className="text-[#F3DFA2]">*</span>
           </label>
           <input
             id="form-name"
             type="text"
             name="name"
-            placeholder="Careme Wanki"
+            required
+            placeholder="Careme Nchang Wanki"
             value={formData.name}
             onChange={handleChange}
-            className="w-full px-3.5 py-2.5 bg-[#1C1C1E] border border-hairline text-soft-white placeholder:text-stone-gray/50 text-xs focus:border-[#F3DFA2] outline-none transition-colors rounded-[2px]"
+            className="w-full px-3.5 py-2.5 bg-[#1C1C1E] border border-[#2E2E30] text-soft-white placeholder:text-stone-gray/50 text-xs focus:border-[#F3DFA2] focus:ring-1 focus:ring-[#F3DFA2]/30 outline-none transition-all rounded-[2px]"
           />
         </div>
 
-        {/* Email Address */}
+        {/* 2. Email Address */}
         <div>
-          <label htmlFor="form-email" className="block text-[11px] uppercase tracking-wider text-[#8A8A8E] mb-1.5 font-medium">
+          <label
+            htmlFor="form-email"
+            className="block text-[11px] uppercase tracking-wider text-[#8A8A8E] mb-1.5 font-medium"
+          >
             Email Address <span className="text-[#F3DFA2]">*</span>
           </label>
           <input
             id="form-email"
             type="email"
             name="email"
+            required
             placeholder="you@domain.com"
             value={formData.email}
             onChange={handleChange}
-            className="w-full px-3.5 py-2.5 bg-[#1C1C1E] border border-hairline text-soft-white placeholder:text-stone-gray/50 text-xs focus:border-[#F3DFA2] outline-none transition-colors rounded-[2px]"
+            className="w-full px-3.5 py-2.5 bg-[#1C1C1E] border border-[#2E2E30] text-soft-white placeholder:text-stone-gray/50 text-xs focus:border-[#F3DFA2] focus:ring-1 focus:ring-[#F3DFA2]/30 outline-none transition-all rounded-[2px]"
           />
         </div>
 
-        {/* Phone Number */}
+        {/* 3. Budget */}
         <div>
-          <label htmlFor="form-phone" className="block text-[11px] uppercase tracking-wider text-[#8A8A8E] mb-1.5 font-medium">
-            Phone Number (Optional)
+          <label
+            htmlFor="form-budget"
+            className="block text-[11px] uppercase tracking-wider text-[#8A8A8E] mb-1.5 font-medium"
+          >
+            Budget
+          </label>
+          <select
+            id="form-budget"
+            name="budget"
+            value={formData.budget}
+            onChange={handleChange}
+            className="w-full px-3.5 py-2.5 bg-[#1C1C1E] border border-[#2E2E30] text-soft-white text-xs focus:border-[#F3DFA2] focus:ring-1 focus:ring-[#F3DFA2]/30 outline-none transition-all rounded-[2px]"
+          >
+            <option value="Under $500k">Under $500k</option>
+            <option value="$500k - $1M">$500k – $1,000,000</option>
+            <option value="$1M - $2M">$1,000,000 – $2,000,000</option>
+            <option value="$2M - $4M">$2,000,000 – $4,000,000</option>
+            <option value="$4M+">$4,000,000+ (Ultra-Luxury)</option>
+          </select>
+        </div>
+
+        {/* 4. Phone Number */}
+        <div>
+          <label
+            htmlFor="form-phone"
+            className="block text-[11px] uppercase tracking-wider text-[#8A8A8E] mb-1.5 font-medium"
+          >
+            Phone Number
           </label>
           <input
             id="form-phone"
@@ -153,103 +186,28 @@ export default function ContactForm({ compact = false }: { compact?: boolean }) 
             placeholder="571.536.7054"
             value={formData.phone}
             onChange={handleChange}
-            className="w-full px-3.5 py-2.5 bg-[#1C1C1E] border border-hairline text-soft-white placeholder:text-stone-gray/50 text-xs focus:border-[#F3DFA2] outline-none transition-colors rounded-[2px]"
+            className="w-full px-3.5 py-2.5 bg-[#1C1C1E] border border-[#2E2E30] text-soft-white placeholder:text-stone-gray/50 text-xs focus:border-[#F3DFA2] focus:ring-1 focus:ring-[#F3DFA2]/30 outline-none transition-all rounded-[2px]"
           />
-        </div>
-
-        {/* Location / Area of Interest */}
-        <div>
-          <label htmlFor="form-location" className="block text-[11px] uppercase tracking-wider text-[#8A8A8E] mb-1.5 font-medium">
-            Location / Market
-          </label>
-          <select
-            id="form-location"
-            name="location"
-            value={formData.location}
-            onChange={handleChange}
-            className="w-full px-3.5 py-2.5 bg-[#1C1C1E] border border-hairline text-soft-white text-xs focus:border-[#F3DFA2] outline-none transition-colors rounded-[2px]"
-          >
-            <option value="Washington D.C.">Washington D.C.</option>
-            <option value="Maryland (Bethesda / Montgomery Co.)">Maryland (Bethesda / Montgomery Co.)</option>
-            <option value="Northern Virginia">Northern Virginia (Arlington / Fairfax / McLean)</option>
-            <option value="DMV Flexible / Relocating">DMV Flexible / Relocating</option>
-          </select>
-        </div>
-
-        {/* Primary Interest */}
-        <div>
-          <label htmlFor="form-interest" className="block text-[11px] uppercase tracking-wider text-[#8A8A8E] mb-1.5 font-medium">
-            I am interested in
-          </label>
-          <select
-            id="form-interest"
-            name="interest"
-            value={formData.interest}
-            onChange={handleChange}
-            className="w-full px-3.5 py-2.5 bg-[#1C1C1E] border border-hairline text-soft-white text-xs focus:border-[#F3DFA2] outline-none transition-colors rounded-[2px]"
-          >
-            <option value="Buying">Buying a Home</option>
-            <option value="Selling">Selling a Home</option>
-            <option value="Investing">Real Estate Investment</option>
-            <option value="Relocation">DMV Relocation</option>
-            <option value="Strategic Advisory">Strategic Consultation</option>
-          </select>
-        </div>
-
-        {/* Timeline */}
-        <div>
-          <label htmlFor="form-timeline" className="block text-[11px] uppercase tracking-wider text-[#8A8A8E] mb-1.5 font-medium">
-            Target Timeline
-          </label>
-          <select
-            id="form-timeline"
-            name="timeline"
-            value={formData.timeline}
-            onChange={handleChange}
-            className="w-full px-3.5 py-2.5 bg-[#1C1C1E] border border-hairline text-soft-white text-xs focus:border-[#F3DFA2] outline-none transition-colors rounded-[2px]"
-          >
-            <option value="Immediately">Immediately (Active)</option>
-            <option value="1-3 months">1 – 3 months</option>
-            <option value="3-6 months">3 – 6 months</option>
-            <option value="6+ months / Exploring">6+ months / Exploring</option>
-          </select>
-        </div>
-
-        {/* Budget Range (spans 2 columns) */}
-        <div className="sm:col-span-2">
-          <label htmlFor="form-budget" className="block text-[11px] uppercase tracking-wider text-[#8A8A8E] mb-1.5 font-medium">
-            Anticipated Price Range / Value
-          </label>
-          <select
-            id="form-budget"
-            name="budget"
-            value={formData.budget}
-            onChange={handleChange}
-            className="w-full px-3.5 py-2.5 bg-[#1C1C1E] border border-hairline text-soft-white text-xs focus:border-[#F3DFA2] outline-none transition-colors rounded-[2px]"
-          >
-            <option value="Under $500k">Under $500k</option>
-            <option value="$500k - $1M">$500k – $1,000,000</option>
-            <option value="$1M - $2M">$1,000,000 – $2,000,000</option>
-            <option value="$2M - $4M">$2,000,000 – $4,000,000</option>
-            <option value="$4M+">$4,000,000+ (Ultra-Luxury)</option>
-            <option value="Not sure / Selling">Not sure / Home Valuation</option>
-          </select>
         </div>
       </div>
 
-      {/* Message */}
+      {/* 5. Message (e.g. tell me about your real estate goals) */}
       <div>
-        <label htmlFor="form-message" className="block text-[11px] uppercase tracking-wider text-[#8A8A8E] mb-1.5 font-medium">
-          How can I help you? <span className="text-[#F3DFA2]">*</span>
+        <label
+          htmlFor="form-message"
+          className="block text-[11px] uppercase tracking-wider text-[#8A8A8E] mb-1.5 font-medium"
+        >
+          Tell me about your real estate goals <span className="text-[#F3DFA2]">*</span>
         </label>
         <textarea
           id="form-message"
           name="message"
-          placeholder="Tell me about your property search, neighborhood preferences, or timeline..."
+          placeholder="Tell me about your real estate goals, timeline, or preferred neighborhoods..."
           rows={3}
+          required
           value={formData.message}
           onChange={handleChange}
-          className="w-full px-3.5 py-2.5 bg-[#1C1C1E] border border-hairline text-soft-white placeholder:text-stone-gray/50 text-xs focus:border-[#F3DFA2] outline-none transition-colors resize-none rounded-[2px]"
+          className="w-full px-3.5 py-2.5 bg-[#1C1C1E] border border-[#2E2E30] text-soft-white placeholder:text-stone-gray/50 text-xs focus:border-[#F3DFA2] focus:ring-1 focus:ring-[#F3DFA2]/30 outline-none transition-all resize-none rounded-[2px]"
         />
       </div>
 
@@ -267,10 +225,12 @@ export default function ContactForm({ compact = false }: { compact?: boolean }) 
         )}
       </AnimatePresence>
 
-      <button
+      <motion.button
+        whileHover={{ scale: 1.01 }}
+        whileTap={{ scale: 0.99 }}
         type="submit"
         disabled={status === "submitting"}
-        className="w-full py-3.5 bg-[#F3DFA2] text-charcoal text-xs font-semibold tracking-wider uppercase transition-all hover:bg-[#E4C878] active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2 rounded-[2px] cursor-pointer"
+        className="w-full py-3.5 bg-[#F3DFA2] text-[#1C1C1E] text-xs font-semibold tracking-wider uppercase transition-all hover:bg-[#E4C878] disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2 rounded-[2px] cursor-pointer shadow-md hover:shadow-[0_4px_16px_rgba(243,223,162,0.2)]"
       >
         {status === "submitting" ? (
           <>
@@ -278,13 +238,16 @@ export default function ContactForm({ compact = false }: { compact?: boolean }) 
             <span>Sending Inquiry...</span>
           </>
         ) : (
-          "Send Message"
+          <>
+            <span>Send Message</span>
+            <Send size={13} className="shrink-0" />
+          </>
         )}
-      </button>
+      </motion.button>
 
       <p className="text-[11px] text-stone-gray/70 text-center">
-        I&apos;ll personally confirm and respond to your inquiry within 24 hours.
+        I&apos;ll personally review your inquiry and respond within 24 hours.
       </p>
-    </form>
+    </motion.form>
   );
 }

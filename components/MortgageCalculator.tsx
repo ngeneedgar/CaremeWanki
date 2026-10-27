@@ -328,10 +328,10 @@ export default function MortgageCalculator({ initialPrice = 600000 }: MortgageCa
               Need a tailored lender pre-approval or competitive mortgage rate strategy?
             </p>
             <Link
-              href="/contact#schedule"
+              href="/contact"
               className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-semibold tracking-wider uppercase text-[#1C1C1E] bg-[#F3DFA2] hover:bg-[#E4C878] rounded-[4px] transition-colors"
             >
-              <span>Schedule a Consultation</span>
+              <span>Inquire with Careme</span>
               <ArrowRight className="w-3.5 h-3.5" strokeWidth={1.5} />
             </Link>
           </div>

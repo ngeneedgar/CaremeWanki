@@ -1,6 +1,6 @@
 {
   "name": "Careme Wanki | Luxury Real Estate DMV",
-  "description": "Quiet-luxury real estate advisory for Washington D.C., Maryland, and Northern Virginia. Affiliated with The ONE Street Company and Samson Properties.",
+  "description": "Quiet-luxury real estate advisory for Washington D.C., Maryland, and Virginia. Affiliated with Samson Properties.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

@@ -3,18 +3,18 @@ import Link from "next/link";
 import { Home, CalendarCheck, Mail, Instagram, Linkedin, Globe, Music2 } from "lucide-react";
 
 const links = [
-  { label: "Search Homes on Zillow", href: "#", icon: Home, external: true },
+  { label: "Search Homes on Zillow", href: "https://www.zillow.com", icon: Home, external: true },
   { label: "Schedule a Consultation", href: "/contact", icon: CalendarCheck, external: false },
   { label: "Contact Me Directly", href: "mailto:Careme@onestreet.one", icon: Mail, external: true },
   { label: "Instagram (@careme_sells_realestate)", href: "https://www.instagram.com/careme_sells_realestate", icon: Instagram, external: true },
   { label: "TikTok (@careme_sells_realestate)", href: "https://www.tiktok.com/@careme_sells_realestate", icon: Music2, external: true },
-  { label: "LinkedIn", href: "#", icon: Linkedin, external: true },
+  { label: "LinkedIn", href: "https://www.linkedin.com", icon: Linkedin, external: true },
   { label: "Main Website", href: "/", icon: Globe, external: false },
 ];
 
 export const metadata = {
-  title: "Careme Wanki | Links",
-  description: "Connect with Careme Wanki — Realtor serving DC, Maryland, and Northern Virginia.",
+  title: "Careme Nchang Wanki | Links",
+  description: "Connect with Careme Nchang Wanki — Real Estate Advisor serving DC, Maryland, and Virginia.",
 };
 
 export default function LinksPage() {
@@ -26,7 +26,7 @@ export default function LinksPage() {
           <div className="w-full h-full rounded-full overflow-hidden ring-4 ring-charcoal">
             <Image
               src="/images/profile-picture.jpg"
-              alt="Careme Wanki"
+              alt="Careme Nchang Wanki"
               width={96}
               height={96}
               className="w-full h-full object-cover"
@@ -35,14 +35,11 @@ export default function LinksPage() {
           </div>
         </div>
 
-        <h1 className="font-serif text-2xl text-soft-white mb-1">
-          Careme Wanki
+        <h1 className="font-serif text-2xl text-soft-white mb-1.5 text-center">
+          Careme Nchang Wanki
         </h1>
-        <p className="text-xs text-stone-gray text-center tracking-wide mb-1">
-          The ONE Street Company
-        </p>
-        <p className="text-[11px] text-stone-gray text-center tracking-wide mb-8">
-          Brokered by Samson Properties
+        <p className="text-xs text-stone-gray text-center tracking-wide mb-8">
+          Real Estate Advisor · DC, MD & VA
         </p>
 
         {/* Link buttons */}
@@ -74,9 +71,23 @@ export default function LinksPage() {
           })}
         </div>
 
-        <p className="text-[10px] text-stone-gray/60 mt-10 text-center">
-          Licensed in DC &amp; Maryland · Virginia Pending
-        </p>
+        {/* Bottom footer for links: licenses + small Samson Properties logo */}
+        <div className="mt-12 flex flex-col items-center gap-3 text-center">
+          <p className="text-[11px] text-stone-gray/70">
+            Licensed in Maryland, Washington D.C., and Virginia
+          </p>
+
+          <div className="flex items-center gap-2 opacity-75">
+            <Image
+              src="/images/samson-logo.png"
+              alt="Samson Properties"
+              width={16}
+              height={16}
+              className="h-4 w-auto object-contain brightness-90"
+            />
+            <span className="text-[11px] text-stone-gray font-medium">Samson Properties</span>
+          </div>
+        </div>
       </div>
     </main>
   );

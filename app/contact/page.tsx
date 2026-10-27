@@ -1,12 +1,11 @@
 import type { Metadata } from 'next';
 import { Phone, Mail, MapPin, ShieldCheck } from 'lucide-react';
 import ContactForm from '@/components/ContactForm';
-import ConsultationScheduler from '@/components/ConsultationScheduler';
 
 export const metadata: Metadata = {
-  title: 'Contact Careme Wanki | Luxury Real Estate Advisor Bethesda MD & DMV',
+  title: 'Contact Careme Nchang Wanki | Real Estate Advisor Bethesda MD & DMV',
   description:
-    'Start the conversation with Careme Wanki. Schedule a consultation or reach out directly for guidance across Washington D.C., Maryland, and Northern Virginia.',
+    'Start the conversation with Careme Nchang Wanki. Reach out directly for strategic real estate guidance across Washington D.C., Maryland, and Virginia.',
 };
 
 export default function ContactPage() {
@@ -79,30 +78,25 @@ export default function ContactPage() {
               5021 Wilson Ln, Bethesda, MD 20814
             </div>
             <p className="text-xs text-[#8A8A8E] mt-2">
-              The ONE Street Company · Samson Properties. By appointment.
+              By appointment.
             </p>
           </div>
         </div>
 
-        {/* Form and Scheduling Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start mb-20">
-          {/* Scheduling Column (6 cols) */}
-          <div className="lg:col-span-6 space-y-8">
-            <ConsultationScheduler />
+        {/* Direct Contact Form Section */}
+        <div className="max-w-2xl mx-auto mb-20 space-y-4">
+          <div className="mb-4 text-center">
+            <span className="text-xs uppercase tracking-[0.2em] text-[#F3DFA2] font-semibold block mb-1">
+              Direct Inquiry
+            </span>
+            <h2 className="font-serif text-3xl text-soft-white font-normal">
+              Send a Message
+            </h2>
+            <p className="text-xs text-stone-gray mt-1">
+              Fill out the form below and Careme will get back to you directly within 24 hours.
+            </p>
           </div>
-
-          {/* Direct Contact Form (6 cols) */}
-          <div className="lg:col-span-6 space-y-4">
-            <div className="mb-2">
-              <span className="text-xs uppercase tracking-[0.2em] text-[#F3DFA2] font-semibold block mb-1">
-                Direct Inquiry
-              </span>
-              <h2 className="font-serif text-2xl text-soft-white font-normal">
-                Send a Message
-              </h2>
-            </div>
-            <ContactForm />
-          </div>
+          <ContactForm />
         </div>
 
         {/* Licensure & Trust Statement */}
@@ -113,10 +107,10 @@ export default function ContactPage() {
               <span>Professional Licensure & Affiliations</span>
             </div>
             <p className="text-xs text-[#8A8A8E]">
-              Washington D.C. (SP40004843) · Maryland (5024731) · Virginia (Pending)
+              Licensed in Maryland, Washington D.C., and Virginia
             </p>
             <p className="text-xs text-[#8A8A8E]">
-              National Association of Realtors · GCAAR · Bright MLS · Equal Housing Opportunity
+              GCAAR · Bright MLS
             </p>
           </div>
           <div className="text-xs text-[#8A8A8E] md:text-right shrink-0">

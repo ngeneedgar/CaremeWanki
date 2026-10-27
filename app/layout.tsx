@@ -18,22 +18,22 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Careme Wanki | Realtor — DC, Maryland & Northern Virginia',
+  title: 'Careme Nchang Wanki | Real Estate Advisor | DC, MD & VA',
   description:
-    'Careme Wanki is a real estate professional serving Washington D.C., Maryland, and Northern Virginia. The ONE Street Company · Brokered by Samson Properties.',
+    'Careme Nchang Wanki is a real estate advisor serving Washington D.C., Maryland, and Virginia. Affiliated with Samson Properties.',
   metadataBase: new URL(process.env.APP_URL || 'https://caremewanki.com'),
   openGraph: {
-    title: 'Careme Wanki | Realtor — DC, Maryland & Northern Virginia',
+    title: 'Careme Nchang Wanki | Real Estate Advisor | DC, MD & VA',
     description:
-      'Careme Wanki is a real estate professional serving Washington D.C., Maryland, and Northern Virginia. The ONE Street Company · Brokered by Samson Properties.',
+      'Careme Nchang Wanki is a real estate advisor serving Washington D.C., Maryland, and Virginia. Affiliated with Samson Properties.',
     type: 'website',
     images: ['/images/profile-picture.jpg'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Careme Wanki | Realtor — DC, Maryland & Northern Virginia',
+    title: 'Careme Nchang Wanki | Real Estate Advisor | DC, MD & VA',
     description:
-      'Careme Wanki is a real estate professional serving Washington D.C., Maryland, and Northern Virginia.',
+      'Careme Nchang Wanki is a real estate advisor serving Washington D.C., Maryland, and Virginia. Affiliated with Samson Properties.',
     images: ['/images/profile-picture.jpg'],
   },
 };
@@ -56,10 +56,17 @@ export default function RootLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'RealEstateAgent',
-              name: 'Careme Wanki',
+              name: 'Careme Nchang Wanki',
               worksFor: {
                 '@type': 'Organization',
-                name: 'The ONE Street Company · Samson Properties',
+                name: 'Samson Properties',
+                address: {
+                  '@type': 'PostalAddress',
+                  streetAddress: '5021 Wilson Ln',
+                  addressLocality: 'Bethesda',
+                  addressRegion: 'MD',
+                  postalCode: '20814',
+                },
               },
               address: {
                 '@type': 'PostalAddress',
@@ -70,7 +77,8 @@ export default function RootLayout({
               },
               telephone: '+1-571-536-7054',
               email: 'Careme@onestreet.one',
-              areaServed: ['Washington D.C.', 'Maryland', 'Northern Virginia'],
+              areaServed: ['Washington D.C.', 'Maryland', 'Virginia'],
+              hasCredential: ['DC SP40004843', 'MD 5024731', 'Virginia'],
             }),
           }}
         />
