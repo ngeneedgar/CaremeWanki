@@ -23,6 +23,14 @@ export const metadata: Metadata = {
   description:
     'Careme Nchang Wanki is a real estate advisor serving Washington D.C., Maryland, and Virginia. Affiliated with Samson Properties.',
   metadataBase: new URL(process.env.APP_URL || 'https://caremewanki.com'),
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
   openGraph: {
     title: 'Careme Nchang Wanki | Real Estate Advisor | DC, MD & VA',
     description:
@@ -77,7 +85,7 @@ export default function RootLayout({
                 postalCode: '20814',
               },
               telephone: '+1-571-536-7054',
-              email: 'Careme@onestreet.one',
+              email: 'Careme@caremewanki.com',
               areaServed: ['Washington D.C.', 'Maryland', 'Virginia'],
               hasCredential: ['DC SP40004843', 'MD 5024731', 'Virginia'],
             }),

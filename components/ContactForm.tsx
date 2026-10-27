@@ -44,6 +44,7 @@ export default function ContactForm({ compact = false }: { compact?: boolean }) 
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     const validationError = validate();
     if (validationError) {
       setStatus("error");
@@ -61,7 +62,8 @@ export default function ContactForm({ compact = false }: { compact?: boolean }) 
         body: JSON.stringify(formData),
       });
 
-      if (!res.ok) throw new Error("Something went wrong. Please try again.");
+      const result = await res.json();
+      if (!res.ok) throw new Error(result.error || "Something went wrong. Please try again.");
 
       setStatus("success");
       setFormData(initialState);
@@ -79,16 +81,20 @@ export default function ContactForm({ compact = false }: { compact?: boolean }) 
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="flex flex-col items-center justify-center text-center py-14 px-6 border border-[#2E2E30] bg-[#242426] rounded-[2px]"
+        className="flex flex-col items-center justify-center text-center py-12 px-6 border border-[#2E2E30] bg-[#242426] rounded-[2px]"
       >
-        <CheckCircle2 className="text-[#F3DFA2] mb-4" size={40} strokeWidth={1.5} />
+        <div className="w-12 h-12 rounded-full bg-[#1C1C1E] border border-[#F3DFA2]/40 flex items-center justify-center mb-4 text-[#F3DFA2]">
+          <CheckCircle2 size={28} strokeWidth={1.75} />
+        </div>
         <h3 className="font-serif text-2xl text-soft-white mb-2">Message Received</h3>
-        <p className="text-stone-gray text-sm max-w-sm leading-relaxed">
+        <p className="text-stone-gray text-xs sm:text-sm max-w-sm leading-relaxed mb-6">
           Thank you for reaching out — I&apos;ll personally review your real estate goals and respond within 24 hours.
         </p>
+
         <button
+          type="button"
           onClick={() => setStatus("idle")}
-          className="mt-6 text-xs text-[#F3DFA2] underline underline-offset-4 hover:text-[#E4C878] transition-colors cursor-pointer"
+          className="text-xs text-[#F3DFA2] underline underline-offset-4 hover:text-[#E4C878] transition-colors cursor-pointer"
         >
           Send another message
         </button>
@@ -104,7 +110,7 @@ export default function ContactForm({ compact = false }: { compact?: boolean }) 
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       onSubmit={handleSubmit}
       className={`space-y-4 bg-[#242426] border border-[#2E2E30] ${
-        compact ? "p-6" : "p-6 sm:p-8"
+        compact ? "p-5 sm:p-6" : "p-6 sm:p-8"
       } rounded-[2px] transition-colors hover:border-[#F3DFA2]/30`}
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -245,7 +251,7 @@ export default function ContactForm({ compact = false }: { compact?: boolean }) 
         )}
       </motion.button>
 
-      <p className="text-[11px] text-stone-gray/70 text-center">
+      <p className="text-[11px] text-stone-gray/70 text-center pt-1">
         I&apos;ll personally review your inquiry and respond within 24 hours.
       </p>
     </motion.form>

@@ -118,11 +118,11 @@ export default function Footer() {
                 <span className="tabular-nums">571.536.7054</span>
               </a>
               <a
-                href="mailto:Careme@onestreet.one"
+                href="mailto:Careme@caremewanki.com"
                 className="flex items-center gap-3 hover:text-[#EDEDED] transition-colors group"
               >
                 <Mail className="w-4 h-4 text-[#F3DFA2] shrink-0" strokeWidth={1.5} />
-                <span>Careme@onestreet.one</span>
+                <span>Careme@caremewanki.com</span>
               </a>
               <div className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-[#F3DFA2] shrink-0 mt-0.5" strokeWidth={1.5} />

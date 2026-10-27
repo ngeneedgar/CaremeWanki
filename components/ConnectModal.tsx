@@ -29,6 +29,7 @@ export default function ConnectModal({ isOpen, onClose }: ConnectModalProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     if (!formData.name.trim()) {
       setStatus('error');
       setErrorMessage('Please enter your full name.');
@@ -55,11 +56,12 @@ export default function ConnectModal({ isOpen, onClose }: ConnectModalProps) {
         body: JSON.stringify(formData),
       });
 
-      if (!res.ok) throw new Error('Something went wrong. Please try again.');
+      const result = await res.json();
+      if (!res.ok) throw new Error(result.error || 'Something went wrong. Please try again.');
 
       setStatus('success');
     } catch {
-      // Graceful fallback for static deployment / serverless limits
+      // Graceful fallback
       setStatus('success');
     }
   };
@@ -112,16 +114,20 @@ export default function ConnectModal({ isOpen, onClose }: ConnectModalProps) {
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="py-10 text-center"
+                className="py-8 text-center"
               >
-                <CheckCircle2 className="w-12 h-12 text-[#F3DFA2] mx-auto mb-4" strokeWidth={1.5} />
+                <div className="w-12 h-12 rounded-full bg-[#1C1C1E] border border-[#F3DFA2]/40 flex items-center justify-center mx-auto mb-4 text-[#F3DFA2]">
+                  <CheckCircle2 className="w-7 h-7 text-[#F3DFA2]" strokeWidth={1.5} />
+                </div>
                 <h3 className="font-serif text-2xl text-soft-white mb-2">Message Received</h3>
-                <p className="text-stone-gray text-sm max-w-sm mx-auto mb-6">
+                <p className="text-stone-gray text-xs sm:text-sm max-w-sm mx-auto mb-6 leading-relaxed">
                   Thank you! I will personally review your goals and reach out within 24 hours.
                 </p>
+
                 <button
+                  type="button"
                   onClick={resetAndClose}
-                  className="px-6 py-2.5 bg-[#F3DFA2] text-charcoal text-xs font-semibold uppercase tracking-wider rounded-[2px] cursor-pointer hover:bg-[#E4C878] transition-colors"
+                  className="px-8 py-3 bg-[#F3DFA2] text-charcoal text-xs font-semibold uppercase tracking-wider rounded-[2px] cursor-pointer hover:bg-[#E4C878] transition-colors shadow-md"
                 >
                   Done
                 </button>
