@@ -108,8 +108,8 @@ export default function ConsultationScheduler() {
               Call 571.536.7054
             </a>
             <span>·</span>
-            <a href="mailto:Careme@onestreet.one" className="text-[#F3DFA2] hover:underline">
-              Careme@onestreet.one
+            <a href="mailto:caremewanki9@gmail.com" className="text-[#F3DFA2] hover:underline">
+              caremewanki9@gmail.com
             </a>
           </div>
 
@@ -275,10 +275,10 @@ export default function ConsultationScheduler() {
           </a>
           <span>·</span>
           <a
-            href="mailto:Careme@onestreet.one"
+            href="mailto:caremewanki9@gmail.com"
             className="text-[#EDEDED] hover:text-[#F3DFA2] transition-colors"
           >
-            Careme@onestreet.one
+            caremewanki9@gmail.com
           </a>
         </div>
       </div>

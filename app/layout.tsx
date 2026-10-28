@@ -85,7 +85,7 @@ export default function RootLayout({
                 postalCode: '20814',
               },
               telephone: '+1-571-536-7054',
-              email: 'Careme@caremewanki.com',
+              email: 'caremewanki9@gmail.com',
               areaServed: ['Washington D.C.', 'Maryland', 'Virginia'],
               hasCredential: ['DC SP40004843', 'MD 5024731', 'Virginia'],
             }),

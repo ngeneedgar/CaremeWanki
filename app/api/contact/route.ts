@@ -31,8 +31,8 @@ const isResendConfigured = Boolean(
 
 const resend = isResendConfigured ? new Resend(resendApiKey) : null;
 
-// The advisor recipient, with copy to user's test email
-const PRIMARY_RECIPIENT = process.env.CONTACT_RECIPIENT_EMAIL || "edgarngene@gmail.com";
+// All website contact inquiries route directly to Careme
+const PRIMARY_RECIPIENT = process.env.CONTACT_RECIPIENT_EMAIL || "caremewanki9@gmail.com";
 
 // GET endpoint to test API connectivity and view recent delivery log
 export async function GET() {

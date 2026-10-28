@@ -43,11 +43,11 @@ export default function HomeContactSection() {
             </motion.a>
             <motion.a
               whileHover={{ x: 4 }}
-              href="mailto:Careme@caremewanki.com"
+              href="mailto:caremewanki9@gmail.com"
               className="flex items-center gap-3 text-sm text-soft-white/90 hover:text-[#F3DFA2] transition-colors group"
             >
               <Mail size={16} className="text-[#F3DFA2] shrink-0" strokeWidth={1.5} />
-              <span>Careme@caremewanki.com</span>
+              <span>caremewanki9@gmail.com</span>
             </motion.a>
             <div className="flex items-center gap-3 text-sm text-soft-white/90">
               <MapPin size={16} className="text-[#F3DFA2] shrink-0" strokeWidth={1.5} />

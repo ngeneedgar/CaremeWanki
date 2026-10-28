@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Phone, Mail, MapPin, ShieldCheck } from 'lucide-react';
+import { Phone, Mail, MapPin } from 'lucide-react';
 import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
@@ -34,7 +34,7 @@ export default function ContactPage() {
               <Phone className="w-5 h-5" strokeWidth={1.5} />
             </div>
             <h3 className="text-xs uppercase tracking-[0.2em] text-[#8A8A8E] font-medium mb-1">
-              Direct Phone & Text
+              Direct Phone &amp; Text
             </h3>
             <a
               href="tel:5715367054"
@@ -56,10 +56,10 @@ export default function ContactPage() {
               Direct Email
             </h3>
             <a
-              href="mailto:Careme@caremewanki.com"
+              href="mailto:caremewanki9@gmail.com"
               className="text-lg font-semibold text-[#EDEDED] hover:text-[#F3DFA2] transition-colors block truncate"
             >
-              Careme@caremewanki.com
+              caremewanki9@gmail.com
             </a>
             <p className="text-xs text-[#8A8A8E] mt-2">
               Detailed inquiries and relocation questions answered promptly.
@@ -84,7 +84,7 @@ export default function ContactPage() {
         </div>
 
         {/* Direct Contact Form Section */}
-        <div className="max-w-2xl mx-auto mb-20 space-y-4">
+        <div className="max-w-2xl mx-auto space-y-4">
           <div className="mb-4 text-center">
             <span className="text-xs uppercase tracking-[0.2em] text-[#F3DFA2] font-semibold block mb-1">
               Direct Inquiry
@@ -97,25 +97,6 @@ export default function ContactPage() {
             </p>
           </div>
           <ContactForm />
-        </div>
-
-        {/* Licensure & Trust Statement */}
-        <div className="p-8 bg-[#151516] border border-[#2E2E30] rounded-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div className="space-y-1">
-            <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-[#F3DFA2] font-semibold">
-              <ShieldCheck className="w-4 h-4" strokeWidth={1.5} />
-              <span>Professional Licensure & Affiliations</span>
-            </div>
-            <p className="text-xs text-[#8A8A8E]">
-              Licensed in Maryland, Washington D.C., and Virginia
-            </p>
-            <p className="text-xs text-[#8A8A8E]">
-              GCAAR · Bright MLS
-            </p>
-          </div>
-          <div className="text-xs text-[#8A8A8E] md:text-right shrink-0">
-            Fluent in English & French
-          </div>
         </div>
       </div>
     </div>
