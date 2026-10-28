@@ -14,7 +14,7 @@ interface Listing {
 }
 
 // TEMP SAMPLE DATA — replace with real addresses/photos once Careme sends them.
-const listings: Listing[] = [
+const baseListings: Listing[] = [
   {
     id: '1',
     streetAddress: '2nd St NW',
@@ -36,103 +36,98 @@ const listings: Listing[] = [
   },
 ];
 
+// Duplicated sets to create an endless, continuous full-bleed stream across any viewport width
+const streamListings: Listing[] = [
+  ...baseListings,
+  ...baseListings,
+  ...baseListings,
+  ...baseListings,
+];
+
 export default function FeaturedListings() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isInteracting, setIsInteracting] = useState(false);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
-  const autoplayTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const isPausedRef = useRef(false);
+  const resumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Update scroll boundaries & active card index based on scroll position
-  const handleScroll = useCallback(() => {
-    const el = scrollRef.current;
-    if (!el) return;
+  // Keep ref in sync with state for RAF loop
+  useEffect(() => {
+    isPausedRef.current = isPaused;
+  }, [isPaused]);
 
-    const scrollLeft = el.scrollLeft;
-    const maxScroll = el.scrollWidth - el.clientWidth;
-    setCanScrollLeft(scrollLeft > 10);
-    setCanScrollRight(scrollLeft < maxScroll - 10);
-
-    // Calculate which card is closest to the start/center
-    const cardWidth = el.querySelector<HTMLElement>('[data-listing-card]')?.offsetWidth || 340;
-    const gap = 24;
-    const newIndex = Math.round(scrollLeft / (cardWidth + gap));
-    setActiveIndex(Math.max(0, Math.min(listings.length - 1, newIndex)));
-  }, []);
-
+  // Continuous smooth auto-slide via RAF
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
 
-    handleScroll();
-    el.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll);
-    return () => {
-      el.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
-    };
-  }, [handleScroll]);
+    let animId: number;
+    let lastTime: number | null = null;
+    const speed = 38; // Constant smooth speed (pixels per second)
 
-  // Smooth scroll by direction
-  const scrollByDirection = (direction: 'left' | 'right') => {
+    const step = (time: number) => {
+      if (el && !isPausedRef.current) {
+        if (lastTime !== null) {
+          const delta = (time - lastTime) / 1000;
+          el.scrollLeft += speed * delta;
+
+          // Seamless infinite wrap point: halfway through the duplicated stream
+          const halfWidth = el.scrollWidth / 2;
+          if (halfWidth > 0 && el.scrollLeft >= halfWidth) {
+            el.scrollLeft -= halfWidth;
+          }
+        }
+        lastTime = time;
+      } else {
+        lastTime = null;
+      }
+      animId = requestAnimationFrame(step);
+    };
+
+    animId = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(animId);
+  }, []);
+
+  // Pause on manual touch/mouse interaction, then smoothly resume
+  const handleInteractionStart = () => {
+    if (resumeTimeoutRef.current) {
+      clearTimeout(resumeTimeoutRef.current);
+    }
+    setIsPaused(true);
+  };
+
+  const handleInteractionEnd = () => {
+    if (resumeTimeoutRef.current) {
+      clearTimeout(resumeTimeoutRef.current);
+    }
+    resumeTimeoutRef.current = setTimeout(() => {
+      setIsPaused(false);
+    }, 2800);
+  };
+
+  // Manual smooth scroll by card step
+  const handleManualScroll = useCallback((direction: 'left' | 'right') => {
     const el = scrollRef.current;
     if (!el) return;
 
+    handleInteractionStart();
     const card = el.querySelector<HTMLElement>('[data-listing-card]');
-    const scrollAmount = card ? card.offsetWidth + 24 : 360;
+    const scrollAmount = card ? card.offsetWidth + 24 : 460;
+
+    const halfWidth = el.scrollWidth / 2;
+    if (direction === 'left' && el.scrollLeft <= 10 && halfWidth > 0) {
+      el.scrollLeft += halfWidth;
+    }
 
     el.scrollBy({
       left: direction === 'left' ? -scrollAmount : scrollAmount,
       behavior: 'smooth',
     });
-  };
 
-  // Scroll directly to a specific card index
-  const scrollToIndex = (index: number) => {
-    const el = scrollRef.current;
-    if (!el) return;
-
-    const card = el.querySelector<HTMLElement>('[data-listing-card]');
-    const cardWidth = card ? card.offsetWidth + 24 : 360;
-
-    el.scrollTo({
-      left: index * cardWidth,
-      behavior: 'smooth',
-    });
-    setActiveIndex(index);
-  };
-
-  // Gentle autoplay that scrolls forward smoothly, but pauses completely when user interacts
-  useEffect(() => {
-    if (isInteracting) {
-      if (autoplayTimerRef.current) clearInterval(autoplayTimerRef.current);
-      return;
-    }
-
-    autoplayTimerRef.current = setInterval(() => {
-      const el = scrollRef.current;
-      if (!el) return;
-
-      const maxScroll = el.scrollWidth - el.clientWidth;
-      const card = el.querySelector<HTMLElement>('[data-listing-card]');
-      const scrollStep = card ? card.offsetWidth + 24 : 360;
-
-      if (el.scrollLeft >= maxScroll - 20) {
-        // Smoothly loop back to start
-        el.scrollTo({ left: 0, behavior: 'smooth' });
-      } else {
-        el.scrollBy({ left: scrollStep, behavior: 'smooth' });
-      }
-    }, 4500);
-
-    return () => {
-      if (autoplayTimerRef.current) clearInterval(autoplayTimerRef.current);
-    };
-  }, [isInteracting]);
+    handleInteractionEnd();
+  }, []);
 
   return (
-    <section className="bg-[#1C1C1E] py-20 lg:py-28 overflow-x-hidden w-full relative">
+    <section className="bg-[#1C1C1E] py-20 lg:py-28 overflow-hidden w-full relative">
       {/* Centered Heading Block */}
       <div className="max-w-4xl mx-auto text-center mb-10 sm:mb-12 px-4 sm:px-6">
         <div className="flex justify-center mb-4">
@@ -154,68 +149,59 @@ export default function FeaturedListings() {
         </a>
       </div>
 
-      {/* Navigation Controls Bar (Mobile & Desktop) */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 mb-4 flex items-center justify-between">
+      {/* Manual Stepper Arrows Bar (Mobile & Desktop) */}
+      <div className="w-full px-4 sm:px-8 lg:px-12 mb-4 flex items-center justify-between">
         <div className="flex items-center gap-2 text-xs text-[#8A8A8E] uppercase tracking-wider font-medium">
-          <span>Property</span>
-          <span className="text-[#F3DFA2] font-semibold">{activeIndex + 1}</span>
-          <span>of</span>
-          <span>{listings.length}</span>
+          <span className="w-2 h-2 rounded-full bg-[#F3DFA2] animate-pulse" />
+          <span>Featured Portfolio</span>
         </div>
 
         <div className="flex items-center gap-2">
           <button
             type="button"
-            onClick={() => scrollByDirection('left')}
-            disabled={!canScrollLeft}
-            aria-label="Previous property"
-            className="w-9 h-9 rounded-full bg-[#242426] border border-[#2E2E30] flex items-center justify-center text-[#EDEDED] hover:text-[#F3DFA2] hover:border-[#F3DFA2] disabled:opacity-30 disabled:hover:text-[#EDEDED] disabled:hover:border-[#2E2E30] transition-all cursor-pointer disabled:cursor-not-allowed shadow-md"
+            onClick={() => handleManualScroll('left')}
+            aria-label="Scroll listings left"
+            className="w-9 h-9 rounded-full bg-[#242426] border border-[#2E2E30] flex items-center justify-center text-[#EDEDED] hover:text-[#F3DFA2] hover:border-[#F3DFA2] transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95"
           >
             <ChevronLeft className="w-4 h-4" strokeWidth={1.75} />
           </button>
           <button
             type="button"
-            onClick={() => scrollByDirection('right')}
-            disabled={!canScrollRight}
-            aria-label="Next property"
-            className="w-9 h-9 rounded-full bg-[#242426] border border-[#2E2E30] flex items-center justify-center text-[#EDEDED] hover:text-[#F3DFA2] hover:border-[#F3DFA2] disabled:opacity-30 disabled:hover:text-[#EDEDED] disabled:hover:border-[#2E2E30] transition-all cursor-pointer disabled:cursor-not-allowed shadow-md"
+            onClick={() => handleManualScroll('right')}
+            aria-label="Scroll listings right"
+            className="w-9 h-9 rounded-full bg-[#242426] border border-[#2E2E30] flex items-center justify-center text-[#EDEDED] hover:text-[#F3DFA2] hover:border-[#F3DFA2] transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95"
           >
             <ChevronRight className="w-4 h-4" strokeWidth={1.75} />
           </button>
         </div>
       </div>
 
-      {/* FULL WIDTH Carousel Track: NATIVE TOUCH-SWIPABLE (NEVER STICKS OR SNAPS BACK TO 0) */}
+      {/* FULL-WIDTH CONTINUOUS AUTO-SLIDING MARQUEE STREAM (Never runs out of cards, never left-aligned) */}
       <div
-        className="w-full relative px-4 sm:px-8"
-        onMouseEnter={() => setIsInteracting(true)}
-        onMouseLeave={() => setIsInteracting(false)}
-        onTouchStart={() => setIsInteracting(true)}
-        onTouchEnd={() => {
-          // Keep paused for 4 seconds after user finishes touching before resuming subtle auto-scroll
-          setTimeout(() => setIsInteracting(false), 4000);
-        }}
+        className="w-full relative overflow-hidden"
+        onMouseEnter={handleInteractionStart}
+        onMouseLeave={handleInteractionEnd}
+        onTouchStart={handleInteractionStart}
+        onTouchEnd={handleInteractionEnd}
       >
         <div
           ref={scrollRef}
-          className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-none pb-6 w-full touch-pan-x"
+          className="flex gap-6 overflow-x-auto scrollbar-none pb-4 w-full touch-pan-x cursor-grab active:cursor-grabbing px-4 sm:px-8"
           style={{
             WebkitOverflowScrolling: 'touch',
             overscrollBehaviorX: 'contain',
-            scrollBehavior: 'smooth',
           }}
         >
-          {listings.map((listing, index) => {
-            const isCardActive = index === activeIndex;
+          {streamListings.map((listing, index) => {
+            const isHighlight = listing.highlight || index % 3 === 2;
             return (
               <div
-                key={listing.id}
+                key={`${listing.id}-${index}`}
                 data-listing-card
-                onClick={() => scrollToIndex(index)}
-                className={`shrink-0 snap-center sm:snap-start select-none w-[82vw] sm:w-[440px] md:w-[540px] lg:w-[620px] rounded-[4px] overflow-hidden border transition-all duration-300 cursor-pointer ${
-                  listing.highlight || isCardActive
+                className={`shrink-0 select-none w-[300px] sm:w-[420px] md:w-[500px] lg:w-[580px] rounded-[4px] overflow-hidden border transition-all duration-300 ${
+                  isHighlight
                     ? 'border-[#F3DFA2] shadow-[0_4px_24px_rgba(243,223,162,0.14)]'
-                    : 'border-[#2E2E30] hover:border-[#F3DFA2]/40'
+                    : 'border-[#2E2E30] hover:border-[#F3DFA2]/50'
                 }`}
               >
                 <div className="relative w-full aspect-[4/3] bg-[#242426]">
@@ -226,9 +212,9 @@ export default function FeaturedListings() {
                     draggable={false}
                     referrerPolicy="no-referrer"
                     className="object-cover pointer-events-none transition-transform duration-500 hover:scale-[1.02]"
-                    sizes="(max-width: 768px) 85vw, (max-width: 1024px) 540px, 620px"
+                    sizes="(max-width: 640px) 300px, (max-width: 1024px) 500px, 580px"
                   />
-                  {/* Subtle bottom gradient overlay for legibility */}
+                  {/* Subtle dark gradient overlay for high text legibility */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1C1C1E] via-transparent to-transparent opacity-40 pointer-events-none" />
                 </div>
                 <div className="bg-[#1C1C1E] px-5 sm:px-6 py-4 sm:py-5 border-t border-[#2E2E30]/60">
@@ -241,23 +227,6 @@ export default function FeaturedListings() {
             );
           })}
         </div>
-      </div>
-
-      {/* Progress Dots Indicator for Mobile & Tablet */}
-      <div className="flex items-center justify-center gap-2 mt-4 sm:mt-6">
-        {listings.map((_, idx) => (
-          <button
-            key={idx}
-            type="button"
-            onClick={() => scrollToIndex(idx)}
-            aria-label={`Go to slide ${idx + 1}`}
-            className={`transition-all duration-300 rounded-full cursor-pointer ${
-              idx === activeIndex
-                ? 'w-6 h-1.5 bg-[#F3DFA2]'
-                : 'w-1.5 h-1.5 bg-[#2E2E30] hover:bg-[#8A8A8E]'
-            }`}
-          />
-        ))}
       </div>
 
       {/* Follow Along Link */}

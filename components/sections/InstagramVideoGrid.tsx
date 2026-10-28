@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Volume2, VolumeX, Instagram } from 'lucide-react';
+import { Volume2, VolumeX, Instagram, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Clip {
   id: string;
@@ -38,6 +38,16 @@ export default function InstagramVideoGrid() {
     return () => window.removeEventListener('resize', checkOverflow);
   }, []);
 
+  const scrollByDirection = (direction: 'left' | 'right') => {
+    const el = trackRef.current;
+    if (!el) return;
+    const step = 340;
+    el.scrollBy({
+      left: direction === 'left' ? -step : step,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <section className="bg-[#1C1C1E] py-24 overflow-x-hidden w-full">
       {/* Centered Heading */}
@@ -56,11 +66,35 @@ export default function InstagramVideoGrid() {
         </a>
       </div>
 
+      {/* Stepper Arrow Controls when overflowing */}
+      {!isCentered && (
+        <div className="w-full px-4 sm:px-8 lg:px-12 mb-3 flex items-center justify-end">
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => scrollByDirection('left')}
+              aria-label="Previous video"
+              className="w-8 h-8 rounded-full bg-[#242426] border border-[#2E2E30] flex items-center justify-center text-[#EDEDED] hover:text-[#F3DFA2] hover:border-[#F3DFA2] transition-colors cursor-pointer"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollByDirection('right')}
+              aria-label="Next video"
+              className="w-8 h-8 rounded-full bg-[#242426] border border-[#2E2E30] flex items-center justify-center text-[#EDEDED] hover:text-[#F3DFA2] hover:border-[#F3DFA2] transition-colors cursor-pointer"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* FULL WIDTH Video Row */}
       <div ref={containerRef} className="w-full px-4 sm:px-8 lg:px-12">
         <div
           ref={trackRef}
-          className={`flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 w-full ${
+          className={`flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-none pb-4 w-full ${
             isCentered ? 'justify-center' : 'justify-start'
           }`}
           style={{ WebkitOverflowScrolling: 'touch' }}
