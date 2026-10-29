@@ -21,7 +21,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Careme Nchang Wanki | Real Estate Advisor | DC, MD & VA',
   description:
-    'Careme Nchang Wanki is a real estate advisor serving Washington D.C., Maryland, and Virginia. Affiliated with Samson Properties.',
+    'Careme Nchang Wanki is a real estate advisor serving Washington D.C., Maryland, and Virginia. Affiliated with ONE Street Company.',
   metadataBase: new URL(process.env.APP_URL || 'https://caremewanki.com'),
   icons: {
     icon: [
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Careme Nchang Wanki | Real Estate Advisor | DC, MD & VA',
     description:
-      'Careme Nchang Wanki is a real estate advisor serving Washington D.C., Maryland, and Virginia. Affiliated with Samson Properties.',
+      'Careme Nchang Wanki is a real estate advisor serving Washington D.C., Maryland, and Virginia. Affiliated with ONE Street Company.',
     type: 'website',
     images: ['/images/profile-picture.jpg'],
   },
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Careme Nchang Wanki | Real Estate Advisor | DC, MD & VA',
     description:
-      'Careme Nchang Wanki is a real estate advisor serving Washington D.C., Maryland, and Virginia. Affiliated with Samson Properties.',
+      'Careme Nchang Wanki is a real estate advisor serving Washington D.C., Maryland, and Virginia. Affiliated with ONE Street Company.',
     images: ['/images/profile-picture.jpg'],
   },
 };
@@ -68,7 +68,7 @@ export default function RootLayout({
               name: 'Careme Nchang Wanki',
               worksFor: {
                 '@type': 'Organization',
-                name: 'Samson Properties',
+                name: 'ONE Street Company',
                 address: {
                   '@type': 'PostalAddress',
                   streetAddress: '5021 Wilson Ln',
@@ -85,7 +85,7 @@ export default function RootLayout({
                 postalCode: '20814',
               },
               telephone: '+1-571-536-7054',
-              email: 'caremewanki9@gmail.com',
+              email: 'Careme@onestreet.one',
               areaServed: ['Washington D.C.', 'Maryland', 'Virginia'],
               hasCredential: ['DC SP40004843', 'MD 5024731', 'Virginia'],
             }),

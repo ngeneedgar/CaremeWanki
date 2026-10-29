@@ -1,135 +1,39 @@
 'use client';
 
-import { useState, useRef, useEffect, useCallback } from 'react';
-import Image from 'next/image';
-import { ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ExternalLink, Compass } from 'lucide-react';
 import Ornament from '@/components/ui/Ornament';
-
-interface Listing {
-  id: string;
-  streetAddress: string;
-  fullAddress: string;
-  image: string;
-  highlight?: boolean;
-}
-
-// TEMP SAMPLE DATA — replace with real addresses/photos once Careme sends them.
-const baseListings: Listing[] = [
-  {
-    id: '1',
-    streetAddress: '2nd St NW',
-    fullAddress: '2nd St NW, Washington, DC 20011',
-    image: '/images/listings/sample-1.jpg',
-  },
-  {
-    id: '2',
-    streetAddress: '3615 Amber Way',
-    fullAddress: '3615 Amber Way, Aberdeen, MD 21001',
-    image: '/images/listings/sample-2.jpg',
-  },
-  {
-    id: '3',
-    streetAddress: '5108 Sharon Rd',
-    fullAddress: '5108 Sharon Rd, Temple Hills, MD',
-    image: '/images/listings/sample-3.jpg',
-    highlight: true,
-  },
-];
-
-// Duplicated sets to create an endless, continuous full-bleed stream across any viewport width
-const streamListings: Listing[] = [
-  ...baseListings,
-  ...baseListings,
-  ...baseListings,
-  ...baseListings,
-];
+import ListingCard from '@/components/ListingCard';
+import { listings as defaultRealListings, Listing } from '@/lib/listings-data';
 
 export default function FeaturedListings() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [isPaused, setIsPaused] = useState(false);
-  const isPausedRef = useRef(false);
-  const resumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [listings, setListings] = useState<Listing[]>(defaultRealListings);
 
-  // Keep ref in sync with state for RAF loop
+  // Dynamically load real listings from /api/listings endpoint
   useEffect(() => {
-    isPausedRef.current = isPaused;
-  }, [isPaused]);
-
-  // Continuous smooth auto-slide via RAF
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-
-    let animId: number;
-    let lastTime: number | null = null;
-    const speed = 38; // Constant smooth speed (pixels per second)
-
-    const step = (time: number) => {
-      if (el && !isPausedRef.current) {
-        if (lastTime !== null) {
-          const delta = (time - lastTime) / 1000;
-          el.scrollLeft += speed * delta;
-
-          // Seamless infinite wrap point: halfway through the duplicated stream
-          const halfWidth = el.scrollWidth / 2;
-          if (halfWidth > 0 && el.scrollLeft >= halfWidth) {
-            el.scrollLeft -= halfWidth;
+    async function loadDynamicListings() {
+      try {
+        const res = await fetch('/api/listings', { cache: 'no-store' });
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data.listings) && data.listings.length > 0) {
+            setListings(data.listings);
           }
         }
-        lastTime = time;
-      } else {
-        lastTime = null;
+      } catch (err) {
+        console.warn('Using embedded real listings fallback:', err);
       }
-      animId = requestAnimationFrame(step);
-    };
-
-    animId = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(animId);
+    }
+    loadDynamicListings();
   }, []);
 
-  // Pause on manual touch/mouse interaction, then smoothly resume
-  const handleInteractionStart = () => {
-    if (resumeTimeoutRef.current) {
-      clearTimeout(resumeTimeoutRef.current);
-    }
-    setIsPaused(true);
-  };
-
-  const handleInteractionEnd = () => {
-    if (resumeTimeoutRef.current) {
-      clearTimeout(resumeTimeoutRef.current);
-    }
-    resumeTimeoutRef.current = setTimeout(() => {
-      setIsPaused(false);
-    }, 2800);
-  };
-
-  // Manual smooth scroll by card step
-  const handleManualScroll = useCallback((direction: 'left' | 'right') => {
-    const el = scrollRef.current;
-    if (!el) return;
-
-    handleInteractionStart();
-    const card = el.querySelector<HTMLElement>('[data-listing-card]');
-    const scrollAmount = card ? card.offsetWidth + 24 : 460;
-
-    const halfWidth = el.scrollWidth / 2;
-    if (direction === 'left' && el.scrollLeft <= 10 && halfWidth > 0) {
-      el.scrollLeft += halfWidth;
-    }
-
-    el.scrollBy({
-      left: direction === 'left' ? -scrollAmount : scrollAmount,
-      behavior: 'smooth',
-    });
-
-    handleInteractionEnd();
-  }, []);
+  // Ensure strictly only the 3 real listings are shown
+  const displayListings = listings.slice(0, 3);
 
   return (
     <section className="bg-[#1C1C1E] py-20 lg:py-28 overflow-hidden w-full relative">
       {/* Centered Heading Block */}
-      <div className="max-w-4xl mx-auto text-center mb-10 sm:mb-12 px-4 sm:px-6">
+      <div className="max-w-4xl mx-auto text-center mb-12 sm:mb-16 px-4 sm:px-6">
         <div className="flex justify-center mb-4">
           <Ornament color="#F3DFA2" />
         </div>
@@ -137,100 +41,63 @@ export default function FeaturedListings() {
         <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#EDEDED] font-normal tracking-tight">
           Properties <span className="italic text-[#F3DFA2]">Across the DMV</span>
         </h2>
-        <p className="text-[#8A8A8E] text-sm sm:text-base mt-3">A look at homes in the DMV</p>
-        <a
-          href="https://www.zillow.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 mt-5 text-xs sm:text-sm tracking-[0.15em] uppercase text-[#EDEDED] hover:text-[#F3DFA2] transition-colors duration-200"
-        >
-          View all on Zillow
-          <ExternalLink strokeWidth={1.5} className="w-3.5 h-3.5" />
-        </a>
-      </div>
+        <p className="text-[#8A8A8E] text-sm sm:text-base mt-3 max-w-xl mx-auto leading-relaxed">
+          A look at premier homes in the DMV
+        </p>
 
-      {/* Manual Stepper Arrows Bar (Mobile & Desktop) */}
-      <div className="w-full px-4 sm:px-8 lg:px-12 mb-4 flex items-center justify-between">
-        <div className="flex items-center gap-2 text-xs text-[#8A8A8E] uppercase tracking-wider font-medium">
-          <span className="w-2 h-2 rounded-full bg-[#F3DFA2] animate-pulse" />
-          <span>Featured Portfolio</span>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={() => handleManualScroll('left')}
-            aria-label="Scroll listings left"
-            className="w-9 h-9 rounded-full bg-[#242426] border border-[#2E2E30] flex items-center justify-center text-[#EDEDED] hover:text-[#F3DFA2] hover:border-[#F3DFA2] transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95"
+        <div className="mt-5">
+          <a
+            href="https://zillow.com/reviews/write/?s=X1-ZUp9ga5xbh1czt_7galw"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-xs sm:text-sm tracking-[0.15em] uppercase text-[#EDEDED] hover:text-[#F3DFA2] transition-colors duration-200"
           >
-            <ChevronLeft className="w-4 h-4" strokeWidth={1.75} />
-          </button>
-          <button
-            type="button"
-            onClick={() => handleManualScroll('right')}
-            aria-label="Scroll listings right"
-            className="w-9 h-9 rounded-full bg-[#242426] border border-[#2E2E30] flex items-center justify-center text-[#EDEDED] hover:text-[#F3DFA2] hover:border-[#F3DFA2] transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95"
-          >
-            <ChevronRight className="w-4 h-4" strokeWidth={1.75} />
-          </button>
+            <span>View all on Zillow</span>
+            <ExternalLink strokeWidth={1.5} className="w-3.5 h-3.5" />
+          </a>
         </div>
       </div>
 
-      {/* FULL-WIDTH CONTINUOUS AUTO-SLIDING MARQUEE STREAM (Never runs out of cards, never left-aligned) */}
-      <div
-        className="w-full relative overflow-hidden"
-        onMouseEnter={handleInteractionStart}
-        onMouseLeave={handleInteractionEnd}
-        onTouchStart={handleInteractionStart}
-        onTouchEnd={handleInteractionEnd}
-      >
-        <div
-          ref={scrollRef}
-          className="flex gap-6 overflow-x-auto scrollbar-none pb-4 w-full touch-pan-x cursor-grab active:cursor-grabbing px-4 sm:px-8"
-          style={{
-            WebkitOverflowScrolling: 'touch',
-            overscrollBehaviorX: 'contain',
-          }}
-        >
-          {streamListings.map((listing, index) => {
-            const isHighlight = listing.highlight || index % 3 === 2;
+      {/* Strictly the 3 Real Listings Showcase Grid with Interactive Multi-Photo Sliders */}
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {displayListings.map((listing, index) => {
+            const isCenterHighlight = listing.highlight || index === 1;
+
             return (
-              <div
-                key={`${listing.id}-${index}`}
-                data-listing-card
-                className={`shrink-0 select-none w-[300px] sm:w-[420px] md:w-[500px] lg:w-[580px] rounded-[4px] overflow-hidden border transition-all duration-300 ${
-                  isHighlight
-                    ? 'border-[#F3DFA2] shadow-[0_4px_24px_rgba(243,223,162,0.14)]'
-                    : 'border-[#2E2E30] hover:border-[#F3DFA2]/50'
-                }`}
-              >
-                <div className="relative w-full aspect-[4/3] bg-[#242426]">
-                  <Image
-                    src={listing.image}
-                    alt={listing.streetAddress}
-                    fill
-                    draggable={false}
-                    referrerPolicy="no-referrer"
-                    className="object-cover pointer-events-none transition-transform duration-500 hover:scale-[1.02]"
-                    sizes="(max-width: 640px) 300px, (max-width: 1024px) 500px, 580px"
-                  />
-                  {/* Subtle dark gradient overlay for high text legibility */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1C1C1E] via-transparent to-transparent opacity-40 pointer-events-none" />
-                </div>
-                <div className="bg-[#1C1C1E] px-5 sm:px-6 py-4 sm:py-5 border-t border-[#2E2E30]/60">
-                  <p className="text-[#EDEDED] font-medium text-lg sm:text-xl font-serif">
-                    {listing.streetAddress}
-                  </p>
-                  <p className="text-[#8A8A8E] text-xs sm:text-sm mt-1">{listing.fullAddress}</p>
-                </div>
-              </div>
+              <ListingCard
+                key={listing.id}
+                listing={listing}
+                isCenterHighlight={isCenterHighlight}
+                priority={index === 1}
+                delayIndex={index}
+                autoRotateInterval={4000 + index * 600}
+              />
             );
           })}
+        </div>
+
+        {/* Bottom CTA Block */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-12 pt-8 border-t border-[#2E2E30]">
+          <p className="text-xs text-[#8A8A8E] text-center sm:text-left">
+            Explore live market inventory, past sales, and client reviews on Careme&apos;s verified Zillow profile.
+          </p>
+
+          <a
+            href="https://zillow.com/reviews/write/?s=X1-ZUp9ga5xbh1czt_7galw"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#242426] hover:bg-[#2A2A2E] border border-[#F3DFA2]/40 hover:border-[#F3DFA2] text-[#F3DFA2] text-xs font-semibold uppercase tracking-wider rounded-[2px] transition-colors"
+          >
+            <Compass className="w-3.5 h-3.5" />
+            <span>More Homes on Zillow</span>
+            <ExternalLink className="w-3 h-3" />
+          </a>
         </div>
       </div>
 
       {/* Follow Along Link */}
-      <div className="flex items-center justify-center mt-10 px-4">
+      <div className="flex items-center justify-center mt-8 px-4">
         <a
           href="https://www.instagram.com/careme_sells_realestate"
           target="_blank"

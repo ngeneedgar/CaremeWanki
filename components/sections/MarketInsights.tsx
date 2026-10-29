@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from 'framer-motion';
 import { DollarSign, Calendar, Home, TrendingUp, ArrowUpRight, ArrowDownRight } from 'lucide-react';
-import Ornament from '@/components/ui/Ornament';
+import Link from 'next/link';
 
 interface MarketMetric {
   id: string;
@@ -59,11 +59,11 @@ export default function MarketInsights() {
   return (
     <section className="py-20 lg:py-28 bg-[#18181A] text-soft-white w-full">
       <div className="max-w-[1240px] mx-auto px-6">
-        {/* Header Block matching Screenshot 1 */}
+        {/* Header Block matching Screenshot: MARKET PULSE / DMV */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="flex justify-center mb-4">
-            <Ornament color="#F3DFA2" />
-          </div>
+          <span className="text-xs uppercase tracking-[0.25em] text-[#F3DFA2] font-semibold block mb-3">
+            MARKET PULSE
+          </span>
           <h2 className="font-serif text-5xl sm:text-6xl text-soft-white font-normal tracking-tight mb-3">
             DMV
           </h2>
@@ -72,10 +72,11 @@ export default function MarketInsights() {
           </p>
         </div>
 
-        {/* 4 Metrics Grid matching Screenshot 1 */}
+        {/* 4 Metrics Grid matching Screenshot */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {MARKET_METRICS.map((metric, idx) => {
             const Icon = metric.icon;
+            const isPositive = metric.trendDirection === 'up';
             return (
               <motion.div
                 key={metric.id}
@@ -100,13 +101,17 @@ export default function MarketInsights() {
                   </div>
                 </div>
 
-                {/* Trend Note */}
+                {/* Trend Note with green / rose accents matching screenshot */}
                 <div className="pt-4 border-t border-[#2E2E30]/70 flex items-center justify-between text-xs">
-                  <span className="inline-flex items-center gap-1 font-medium text-[#F3DFA2]">
-                    {metric.trendDirection === 'up' ? (
-                      <ArrowUpRight className="w-3.5 h-3.5 text-[#F3DFA2]" />
+                  <span
+                    className={`inline-flex items-center gap-1 font-medium ${
+                      isPositive ? 'text-emerald-400' : 'text-rose-400'
+                    }`}
+                  >
+                    {isPositive ? (
+                      <ArrowUpRight className="w-3.5 h-3.5" />
                     ) : (
-                      <ArrowDownRight className="w-3.5 h-3.5 text-[#F3DFA2]" />
+                      <ArrowDownRight className="w-3.5 h-3.5" />
                     )}
                     {metric.trend}
                   </span>
@@ -117,6 +122,20 @@ export default function MarketInsights() {
               </motion.div>
             );
           })}
+        </div>
+
+        {/* Bottom CTA Block matching Screenshot */}
+        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 text-center sm:text-left">
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-[#F3DFA2] text-[#1C1C1E] font-semibold text-xs uppercase tracking-wider rounded-[2px] hover:bg-[#E4C878] transition-all duration-200 shadow-md hover:shadow-[0_4px_20px_rgba(243,223,162,0.25)]"
+          >
+            <span>SEE WHAT YOUR HOME IS WORTH</span>
+            <ArrowUpRight className="w-4 h-4" />
+          </Link>
+          <span className="text-xs text-[#8A8A8E]">
+            Data reflects current Northern Virginia market trends
+          </span>
         </div>
       </div>
     </section>

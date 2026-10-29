@@ -43,7 +43,7 @@ export default function HeroSection() {
               variants={item}
               className="font-serif text-[clamp(2.75rem,6.5vw,5rem)] leading-[0.98] text-soft-white tracking-tight mb-6"
             >
-              Careme Nchang
+              Careme
               <br />
               Wanki
             </motion.h1>

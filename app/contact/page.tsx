@@ -56,10 +56,10 @@ export default function ContactPage() {
               Direct Email
             </h3>
             <a
-              href="mailto:caremewanki9@gmail.com"
+              href="mailto:Careme@onestreet.one"
               className="text-lg font-semibold text-[#EDEDED] hover:text-[#F3DFA2] transition-colors block truncate"
             >
-              caremewanki9@gmail.com
+              Careme@onestreet.one
             </a>
             <p className="text-xs text-[#8A8A8E] mt-2">
               Detailed inquiries and relocation questions answered promptly.

@@ -21,7 +21,7 @@ export default function TestimonialsCarousel() {
         <p className="text-stone-gray text-sm">
           In the meantime, see verified reviews on{" "}
           <a
-            href="https://www.zillow.com"
+            href="https://zillow.com/reviews/write/?s=X1-ZUp9ga5xbh1czt_7galw"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#F3DFA2] underline underline-offset-4 hover:text-[#E4C878] transition-colors"
