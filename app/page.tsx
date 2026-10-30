@@ -7,7 +7,6 @@ import ServicesGrid from '@/components/sections/ServicesGrid';
 import ServiceAreas from '@/components/sections/ServiceAreas';
 import MarketInsights from '@/components/sections/MarketInsights';
 import FeaturedListings from '@/components/sections/FeaturedListings';
-import InstagramVideoGrid from '@/components/sections/InstagramVideoGrid';
 import TestimonialsCarousel from '@/components/sections/TestimonialsCarousel';
 import HomeContactSection from '@/components/sections/HomeContactSection';
 import Ornament from '@/components/ui/Ornament';
@@ -224,22 +223,17 @@ export default function HomePage() {
       </section>
 
       {/* ========================================================
-          SECTION 8: FEATURED LISTINGS (FULL WIDTH MARQUEE)
+          SECTION 8: FEATURED LISTINGS (DMV REAL ESTATE)
       ======================================================== */}
       <FeaturedListings />
 
       {/* ========================================================
-          SECTION 9: INSTAGRAM VIDEO GRID (REAL ESTATE IN MOTION)
-      ======================================================== */}
-      <InstagramVideoGrid />
-
-      {/* ========================================================
-          SECTION 10: TESTIMONIALS CAROUSEL
+          SECTION 9: CLIENT STORIES (TESTIMONIALS CAROUSEL)
       ======================================================== */}
       <TestimonialsCarousel />
 
       {/* ========================================================
-          SECTION 11: HOMEPAGE CONTACT & MESSAGE SECTION
+          SECTION 10: HOMEPAGE CONTACT & MESSAGE SECTION
       ======================================================== */}
       <HomeContactSection />
     </div>

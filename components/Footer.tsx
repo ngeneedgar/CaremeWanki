@@ -182,11 +182,20 @@ export default function Footer() {
             <Ornament color="#F3DFA2" />
           </div>
 
-          {/* Bottom Bar: Samson Properties logo on the LEFT side, sharp vector SVG, copyright on the right */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-[#2E2E30]/40 pt-6 text-[11px]">
-            {/* Samson Properties on the LEFT */}
-            <div className="flex items-center">
-              <SamsonLogo className="h-6 w-auto" />
+          {/* Bottom Bar: Samson Properties logo and ONE Street logo on the LEFT side, copyright on the right */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-5 border-t border-[#2E2E30]/40 pt-6 text-[11px]">
+            {/* Samson Properties & ONE Street on the LEFT */}
+            <div className="flex items-center gap-4 sm:gap-6">
+              <SamsonLogo className="h-7 sm:h-8 w-auto" />
+              <div className="h-6 w-px bg-[#2E2E30]" aria-hidden="true" />
+              <Image
+                src="https://i.postimg.cc/7PFHVjKB/one-street-white-logo.png"
+                alt="ONE Street"
+                width={190}
+                height={48}
+                className="h-7 sm:h-8 md:h-9 w-auto object-contain brightness-105"
+                referrerPolicy="no-referrer"
+              />
             </div>
 
             {/* Copyright on the RIGHT */}

@@ -101,22 +101,31 @@ export default function LinksPage() {
           })}
         </div>
 
-        {/* Bottom footer for links: licenses + sharp Samson Properties logo */}
+        {/* Bottom footer for links: licenses + sharp Samson Properties & ONE Street logos */}
         <div className="mt-12 flex flex-col items-center gap-3 text-center">
           <p className="text-[11px] text-stone-gray/70">
             Licensed in Maryland, Washington D.C., and Virginia
           </p>
 
-          <div className="flex items-center gap-2 pt-1">
+          <div className="flex items-center gap-4 pt-1">
             <Image
               src="https://i.postimg.cc/MKS1DgPL/samson-logo.png"
               alt="Samson Properties"
-              width={140}
-              height={36}
-              className="h-6 w-auto object-contain brightness-105 contrast-105"
+              width={160}
+              height={44}
+              className="h-7 sm:h-8 w-auto object-contain brightness-105 contrast-105"
               style={{
                 imageRendering: "-webkit-optimize-contrast",
               }}
+              referrerPolicy="no-referrer"
+            />
+            <div className="h-5 w-px bg-white/20" aria-hidden="true" />
+            <Image
+              src="https://i.postimg.cc/7PFHVjKB/one-street-white-logo.png"
+              alt="ONE Street"
+              width={160}
+              height={44}
+              className="h-6 sm:h-7 w-auto object-contain brightness-105"
               referrerPolicy="no-referrer"
             />
           </div>
