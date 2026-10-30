@@ -14,7 +14,6 @@ import {
   ArrowRight,
   ExternalLink,
 } from "lucide-react";
-import ConnectModal from "@/components/ConnectModal";
 
 const PHONE_NUMBER = "571.536.7054";
 const PHONE_RAW = "+15715367054";
@@ -22,9 +21,7 @@ const PRETYPED_MESSAGE =
   "Hey Careme! I’m thinking about buying or selling and wanted to connect. I’d love to hear what you think the best next step is!";
 
 export default function TextBioPage() {
-  const [copiedText, setCopiedText] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
-  const [isConsultationOpen, setIsConsultationOpen] = useState(false);
 
   const encodedMessage = encodeURIComponent(PRETYPED_MESSAGE);
   const universalSmsHref = `sms:${PHONE_RAW}?&body=${encodedMessage}`;
@@ -54,31 +51,14 @@ export default function TextBioPage() {
     e.preventDefault();
     const isIOS =
       typeof navigator !== "undefined" &&
-      /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent);
+      (/iPad|iPhone|iPod/i.test(navigator.userAgent) ||
+        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1));
     const targetUrl = isIOS
       ? `sms:${PHONE_RAW}&body=${encodedMessage}`
       : `sms:${PHONE_RAW}?body=${encodedMessage}`;
 
-    try {
-      navigator.clipboard.writeText(PRETYPED_MESSAGE);
-      setCopiedText(true);
-      setTimeout(() => setCopiedText(false), 2000);
-    } catch {
-      // ignore
-    }
-
     if (typeof window !== "undefined") {
       window.location.href = targetUrl;
-    }
-  };
-
-  const handleCopyTextOnly = async () => {
-    try {
-      await navigator.clipboard.writeText(PRETYPED_MESSAGE);
-      setCopiedText(true);
-      setTimeout(() => setCopiedText(false), 2200);
-    } catch {
-      // ignore
     }
   };
 
@@ -145,53 +125,12 @@ export default function TextBioPage() {
           <a
             href={universalSmsHref}
             onClick={handleLaunchSms}
-            className="flex items-center justify-center gap-3 w-full py-4 px-6 bg-gradient-to-r from-[#F3DFA2] to-[#E4C878] text-charcoal font-semibold text-sm tracking-wide rounded-lg shadow-lg hover:brightness-105 active:scale-[0.98] transition-all cursor-pointer mb-4"
+            className="flex items-center justify-center gap-3 w-full py-4 px-6 bg-gradient-to-r from-[#F3DFA2] to-[#E4C878] text-charcoal font-semibold text-sm tracking-wide rounded-lg shadow-lg hover:brightness-105 active:scale-[0.98] transition-all cursor-pointer"
           >
             <MessageSquare size={18} strokeWidth={2.2} />
             <span>Open in Messages (SMS)</span>
             <Send size={15} strokeWidth={2.5} className="ml-0.5" />
           </a>
-
-          {/* Pre-typed SMS Bubble Preview */}
-          <div className="bg-[#1C1C1E] border border-[#2E2E30] rounded-xl p-4">
-            <div className="flex items-center justify-between text-[11px] text-stone-gray mb-2.5">
-              <span className="uppercase tracking-wider text-[10px] font-medium text-[#F3DFA2]">
-                Pre-typed Message
-              </span>
-              <button
-                type="button"
-                onClick={handleCopyTextOnly}
-                className="inline-flex items-center gap-1.5 text-xs text-[#F3DFA2] hover:underline cursor-pointer"
-              >
-                {copiedText ? (
-                  <>
-                    <Check size={12} className="text-[#34C759]" />
-                    <span className="text-[#34C759]">Copied!</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy size={12} />
-                    <span>Copy text</span>
-                  </>
-                )}
-              </button>
-            </div>
-
-            <a
-              href={universalSmsHref}
-              onClick={handleLaunchSms}
-              className="block bg-[#242426] hover:bg-[#2A2A2E] border border-[#2E2E30] rounded-lg p-3.5 transition-colors cursor-pointer group"
-            >
-              <div className="flex items-start gap-2.5">
-                <p className="text-xs sm:text-[13px] leading-relaxed text-soft-white font-sans flex-1">
-                  &ldquo;{PRETYPED_MESSAGE}&rdquo;
-                </p>
-                <div className="w-6 h-6 rounded-full bg-[#007AFF] text-white flex items-center justify-center shrink-0 shadow-sm mt-0.5 group-hover:scale-110 transition-transform">
-                  <Send size={11} className="translate-x-[0.5px]" />
-                </div>
-              </div>
-            </a>
-          </div>
 
           {/* Copy Direct IG Bio Link Button */}
           <div className="mt-4 pt-3.5 border-t border-[#2E2E30]/70 flex items-center justify-between text-xs text-stone-gray">
@@ -234,19 +173,19 @@ export default function TextBioPage() {
           </a>
 
           {/* Schedule Consultation Form */}
-          <button
-            type="button"
-            onClick={() => setIsConsultationOpen(true)}
-            className="flex items-center justify-between w-full px-4 py-3 bg-[#1C1C1E] border border-[#2E2E30] hover:border-[#F3DFA2]/40 rounded-lg text-xs text-soft-white transition-all group cursor-pointer text-left"
+          <Link
+            href="/contact#consultation"
+            className="flex items-center justify-between w-full px-4 py-3 bg-[#1C1C1E] border border-[#2E2E30] hover:border-[#F3DFA2]/40 rounded-lg text-xs text-soft-white transition-all group"
           >
             <div className="flex items-center gap-3">
               <CalendarCheck size={15} className="text-[#F3DFA2]" />
               <span>Schedule a Consultation (Form)</span>
             </div>
-            <span className="text-[10px] uppercase font-semibold text-[#F3DFA2] bg-[#F3DFA2]/10 px-2 py-0.5 rounded border border-[#F3DFA2]/20">
-              Form
-            </span>
-          </button>
+            <ArrowRight
+              size={14}
+              className="text-stone-gray group-hover:text-[#F3DFA2] transition-colors"
+            />
+          </Link>
 
           {/* Main Website */}
           <Link
@@ -302,12 +241,6 @@ export default function TextBioPage() {
           </div>
         </div>
       </div>
-
-      {/* Consultation Modal */}
-      <ConnectModal
-        isOpen={isConsultationOpen}
-        onClose={() => setIsConsultationOpen(false)}
-      />
     </main>
   );
 }
