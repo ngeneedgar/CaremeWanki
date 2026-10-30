@@ -11,7 +11,12 @@ import SamsonLogo from '@/components/ui/SamsonLogo';
 export default function Footer() {
   const pathname = usePathname();
 
-  if (pathname === '/links' || pathname?.startsWith('/links/')) {
+  if (
+    pathname === '/links' ||
+    pathname?.startsWith('/links/') ||
+    pathname === '/text' ||
+    pathname?.startsWith('/text/')
+  ) {
     return null;
   }
 
@@ -187,13 +192,13 @@ export default function Footer() {
             {/* Samson Properties & ONE Street on the LEFT */}
             <div className="flex items-center gap-4 sm:gap-6">
               <SamsonLogo className="h-7 sm:h-8 w-auto" />
-              <div className="h-6 w-px bg-[#2E2E30]" aria-hidden="true" />
+              <div className="h-7 w-px bg-[#2E2E30]" aria-hidden="true" />
               <Image
                 src="https://i.postimg.cc/7PFHVjKB/one-street-white-logo.png"
                 alt="ONE Street"
-                width={190}
-                height={48}
-                className="h-7 sm:h-8 md:h-9 w-auto object-contain brightness-105"
+                width={220}
+                height={56}
+                className="h-9 sm:h-10 md:h-11 w-auto object-contain brightness-110"
                 referrerPolicy="no-referrer"
               />
             </div>

@@ -161,7 +161,7 @@ export default function ConnectModal({ isOpen, onClose }: ConnectModalProps) {
                       type="text"
                       name="name"
                       required
-                      placeholder="Careme Nchang Wanki"
+                      placeholder="e.g. Alexandra Vance"
                       value={formData.name}
                       onChange={handleChange}
                       className="w-full px-3.5 py-2.5 bg-[#1C1C1E] border border-[#2E2E30] text-soft-white placeholder:text-stone-gray/50 text-xs focus:border-[#F3DFA2] focus:ring-1 focus:ring-[#F3DFA2]/30 outline-none rounded-[2px] transition-all"

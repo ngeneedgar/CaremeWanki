@@ -22,7 +22,12 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  if (pathname === '/links' || pathname?.startsWith('/links/')) {
+  if (
+    pathname === '/links' ||
+    pathname?.startsWith('/links/') ||
+    pathname === '/text' ||
+    pathname?.startsWith('/text/')
+  ) {
     return null;
   }
 

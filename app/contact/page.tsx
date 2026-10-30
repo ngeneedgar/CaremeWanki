@@ -29,22 +29,32 @@ export default function ContactPage() {
         {/* Contact Info Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
           {/* Card 1: Direct Phone */}
-          <div className="p-6 bg-[#242426] border border-[#2E2E30] rounded-lg">
-            <div className="w-10 h-10 rounded-[4px] bg-[#1C1C1E] border border-[#2E2E30] flex items-center justify-center text-[#F3DFA2] mb-4">
-              <Phone className="w-5 h-5" strokeWidth={1.5} />
+          <div className="p-6 bg-[#242426] border border-[#2E2E30] rounded-lg flex flex-col justify-between">
+            <div>
+              <div className="w-10 h-10 rounded-[4px] bg-[#1C1C1E] border border-[#2E2E30] flex items-center justify-center text-[#F3DFA2] mb-4">
+                <Phone className="w-5 h-5" strokeWidth={1.5} />
+              </div>
+              <h3 className="text-xs uppercase tracking-[0.2em] text-[#8A8A8E] font-medium mb-1">
+                Direct Phone &amp; Text
+              </h3>
+              <a
+                href="tel:5715367054"
+                className="text-lg font-semibold text-[#EDEDED] hover:text-[#F3DFA2] transition-colors tabular-nums block"
+              >
+                571.536.7054
+              </a>
+              <p className="text-xs text-[#8A8A8E] mt-2">
+                Available Monday – Friday, 9:00 AM – 6:00 PM Eastern.
+              </p>
             </div>
-            <h3 className="text-xs uppercase tracking-[0.2em] text-[#8A8A8E] font-medium mb-1">
-              Direct Phone &amp; Text
-            </h3>
-            <a
-              href="tel:5715367054"
-              className="text-lg font-semibold text-[#EDEDED] hover:text-[#F3DFA2] transition-colors tabular-nums block"
-            >
-              571.536.7054
-            </a>
-            <p className="text-xs text-[#8A8A8E] mt-2">
-              Available Monday – Friday, 9:00 AM – 6:00 PM Eastern.
-            </p>
+            <div className="mt-4 pt-3 border-t border-[#2E2E30]/60">
+              <a
+                href="sms:+15715367054?&body=Hey%20Careme!%20I%E2%80%99m%20thinking%20about%20buying%20or%20selling%20and%20wanted%20to%20connect.%20I%E2%80%99d%20love%20to%20hear%20what%20you%20think%20the%20best%20next%20step%20is!"
+                className="inline-flex items-center gap-1.5 text-xs text-[#F3DFA2] hover:text-[#E4C878] font-medium transition-colors"
+              >
+                <span>Text Careme directly &rarr;</span>
+              </a>
+            </div>
           </div>
 
           {/* Card 2: Direct Email */}
@@ -84,13 +94,13 @@ export default function ContactPage() {
         </div>
 
         {/* Direct Contact Form Section */}
-        <div className="max-w-2xl mx-auto space-y-4">
-          <div className="mb-4 text-center">
+        <div id="consultation" className="max-w-2xl mx-auto space-y-4 scroll-mt-28">
+          <div id="consultation-form" className="mb-4 text-center">
             <span className="text-xs uppercase tracking-[0.2em] text-[#F3DFA2] font-semibold block mb-1">
               Direct Inquiry
             </span>
             <h2 className="font-serif text-3xl text-soft-white font-normal">
-              Send a Message
+              Schedule a Consultation
             </h2>
             <p className="text-xs text-stone-gray mt-1">
               Fill out the form below and Careme will get back to you directly within 24 hours.
