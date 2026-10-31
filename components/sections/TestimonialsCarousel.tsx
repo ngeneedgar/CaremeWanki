@@ -13,25 +13,7 @@ export default function TestimonialsCarousel() {
   const hasTestimonials = testimonials.length > 0;
 
   if (!hasTestimonials) {
-    return (
-      <section className="py-24 px-6 text-center bg-charcoal border-b border-hairline">
-        <Quote className="mx-auto mb-4 text-[#F3DFA2]/40" size={32} strokeWidth={1} />
-        <h3 className="font-serif text-2xl text-soft-white mb-3">Client stories, coming soon</h3>
-        <Ornament className="mb-4" />
-        <p className="text-stone-gray text-sm">
-          In the meantime, see verified reviews on{" "}
-          <a
-            href="https://zillow.com/reviews/write/?s=X1-ZUp9ga5xbh1czt_7galw"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#F3DFA2] underline underline-offset-4 hover:text-[#E4C878] transition-colors"
-          >
-            my Zillow profile
-          </a>
-          .
-        </p>
-      </section>
-    );
+    return null;
   }
 
   const next = () => setIndex((i) => (i + 1) % testimonials.length);

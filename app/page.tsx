@@ -7,7 +7,6 @@ import ServicesGrid from '@/components/sections/ServicesGrid';
 import ServiceAreas from '@/components/sections/ServiceAreas';
 import MarketInsights from '@/components/sections/MarketInsights';
 import FeaturedListings from '@/components/sections/FeaturedListings';
-import TestimonialsCarousel from '@/components/sections/TestimonialsCarousel';
 import HomeContactSection from '@/components/sections/HomeContactSection';
 import Ornament from '@/components/ui/Ornament';
 import FadeUp from '@/components/motion/FadeUp';
@@ -228,12 +227,7 @@ export default function HomePage() {
       <FeaturedListings />
 
       {/* ========================================================
-          SECTION 9: CLIENT STORIES (TESTIMONIALS CAROUSEL)
-      ======================================================== */}
-      <TestimonialsCarousel />
-
-      {/* ========================================================
-          SECTION 10: HOMEPAGE CONTACT & MESSAGE SECTION
+          SECTION 9: HOMEPAGE CONTACT & MESSAGE SECTION
       ======================================================== */}
       <HomeContactSection />
     </div>
